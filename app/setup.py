@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-`setuptools` Distribution for module_goes_here
+`setuptools` Distribution for spelling
 """
 
 # System  Imports
@@ -12,7 +12,7 @@ import re
 # External Imports
 from setuptools import find_packages, setup
 
-PACKAGE_NAME = 'module_goes_here'
+PACKAGE_NAME = 'spelling'
 
 
 def load_readme(fname):
@@ -23,7 +23,7 @@ def load_readme(fname):
     with codecs.open(file_path, encoding='utf-8') as fobj:
         sub = (
             '(https://github.com/'
-            'github_organization_goes_here/github_repository_goes_here'
+            'resplendent-dev/spelling'
             '/blob/master/\\g<1>)'
         )
         markdown_fixed = re.sub(
@@ -58,20 +58,20 @@ def read_version():
 setup(
     name=PACKAGE_NAME,
     version=read_version(),
-    author='name_goes_here',
-    author_email='email_goes_here',
-    maintainer='name_goes_here',
-    maintainer_email='email_goes_here',
+    author='Tim Gates',
+    author_email='tim.gates@iress.com',
+    maintainer='Tim Gates',
+    maintainer_email='tim.gates@iress.com',
     packages=find_packages(exclude=['tests']),
     license='GPLv3+',
     description=(
-        '3Amigos Python GitHub Template'
+        'CI configuration engine for pyspelling using plugins like resplendent and unanimous to make CI integration easier.'
     ),
     long_description=load_readme('README.md'),
     long_description_content_type='text/markdown',
     python_requires='>=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*',
     install_requires=[],
-    url='https://github.com/github_organization_goes_here/github_repository_goes_here',
+    url='https://github.com/resplendent-dev/spelling',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Programming Language :: Python',
