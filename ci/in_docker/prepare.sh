@@ -10,3 +10,5 @@ cp "${BASEDIR}/LICENSE" "${BASEDIR}/app/LICENSE"
 
 MAIN_MODULE="spelling"
 MODULES=( "${MAIN_MODULE}" "tests" )
+export MODULES
+export MAIN_MODULE
