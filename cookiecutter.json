@@ -9,7 +9,6 @@
     "project_url": "https://github.com/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}",
     "py_modulename":  "{{ cookiecutter.project_slug }}",
     "community_name":  "{{ cookiecutter.project_name }}",
-    "dictionary": "en_AU",
     "docker_application_tagname": "app",
     "docker_workspace_dirname": "workspace",
     "docker_application_dirname": "{{ cookiecutter.docker_application_tagname }}",
@@ -17,5 +16,19 @@
     "author_name": "Tim Gates",
     "maintainer_name": "{{ cookiecutter.author_name }}",
     "maintainer_email": "{{ cookiecutter.author_email }}",
-    "project_email": "{{ cookiecutter.maintainer_email }}"
+    "project_email": "{{ cookiecutter.maintainer_email }}",
+    "azure_buildid": "17",
+    "azure_user": "timgates",
+    "azure_project": "{{ cookiecutter.azure_user }}",
+    "build_status_url": "https://dev.azure.com/{{ cookiecutter.azure_user }}/{{ cookiecutter.azure_project }}/_apis/build/status/{{ cookiecutter.github_org }}.{{ cookiecutter.github_repo }}?branchName=master",
+    "build_url": "https://dev.azure.com/{{ cookiecutter.azure_user }}/{{ cookiecutter.azure_project }}/_build/latest?definitionId={{ cookiecutter.azure_buildid }}&branchName=master",
+    "pypi_name": "{{ cookiecutter.project_name }}",
+    "readthedocs_name": "{{ cookiecutter.project_name }}",
+    "app_requirements": "docutils\npyspelling",
+    "cov_fail_under": "40",
+    "dictionary": "en_AU",
+    "python_requires": ">=3.4",
+    "python_versions": "3.4 3.5 3.6 3.7",
+    "classifier_pytwo": "",
+    "classifier_pytwoseven": ""
 }
