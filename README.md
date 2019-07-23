@@ -5,10 +5,10 @@ CI configuration engine for pyspelling using plugins like resplendent and unanim
 [![PyPi version](https://img.shields.io/pypi/v/spelling.svg)](https://pypi.org/project/spelling)
 [![Python Versions](https://img.shields.io/pypi/pyversions/spelling.svg)](https://pypi.org/project/spelling)
 [![PyPi downloads per month](https://img.shields.io/pypi/dm/spelling.svg)](https://pypi.org/project/spelling)
-[![Documentation Status](https://readthedocs.org/projects/spelling/badge/?version=latest)](https://spelling.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/spelling-dev/badge/?version=latest)](https://spelling-dev.readthedocs.io/en/latest/?badge=latest)
 
 # Additional Documentation:
-* [Online Documentation](https://spelling.readthedocs.io/en/latest/)
+* [Online Documentation](https://spelling-dev.readthedocs.io/en/latest/)
 * [News](NEWS.rst).
 * [Template Updates](COOKIECUTTER_UPDATES.md).
 * [Code of Conduct](CODE_OF_CONDUCT.md).

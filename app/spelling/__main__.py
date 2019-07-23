@@ -13,7 +13,7 @@ def main():
     """
     print("""\
 For more information view the online documentation at:
-https://spelling.readthedocs.io/en/latest/
+https://spelling-dev.readthedocs.io/en/latest/
 """)
 
 
