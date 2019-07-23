@@ -72,7 +72,7 @@ setup(
     python_requires='>=3.4',
     install_requires=[
         elem for elem in
-        'docutils\npyspelling'.split('\n')
+        'pyspelling'.split('\n')
         if elem
     ],
     url='https://github.com/resplendent-dev/spelling',
