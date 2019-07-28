@@ -22,7 +22,7 @@ from [PyPI](https://pypi.org/).
 $ pip install spelling
 ```
 
-
+Note: if using Python 3.4 the latest version of lxml only supports python 3.5 and above so install lxml 4.3.4
 
 
 ## Prerequisites:
