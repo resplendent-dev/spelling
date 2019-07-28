@@ -1,3 +1,2 @@
-docutils
 lxml==4.3.4
 pyspelling
