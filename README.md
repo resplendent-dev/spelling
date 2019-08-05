@@ -2,7 +2,7 @@
 
 [![Azure Status](https://dev.azure.com/timgates/timgates/_apis/build/status/resplendent-dev.spelling?branchName=master)](https://dev.azure.com/timgates/timgates/_build/latest?definitionId=17&branchName=master)
 [![Travis Status](https://travis-ci.org/resplendent-dev/spelling.svg?branch=master)](https://travis-ci.org/resplendent-dev/spelling)
-[![Appveyor Status](https://ci.appveyor.com/api/projects/status/github/resplendent-dev/spelling/branch/master?svg=true)](https://ci.appveyor.com/project/resplendent-dev/spelling)
+[![Appveyor Status](https://ci.appveyor.com/api/projects/status/f7vb9mbohfolu0n2/branch/master?svg=true)](https://ci.appveyor.com/project/timgates42/spelling)
 [![PyPI version](https://img.shields.io/pypi/v/spelling.svg)](https://pypi.org/project/spelling)
 [![Python Versions](https://img.shields.io/pypi/pyversions/spelling.svg)](https://pypi.org/project/spelling)
 [![PyPI downloads per month](https://img.shields.io/pypi/dm/spelling.svg)](https://pypi.org/project/spelling)
@@ -10,6 +10,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/resplendent-dev/spelling/badge.svg)](https://coveralls.io/github/resplendent-dev/spelling/)
 
 CI configuration engine for pyspelling using plugins like resplendent and unanimous to make CI integration easier.
+
+More details can be found in the
+[Online Documentation.](https://spelling-dev.readthedocs.io/en/latest/)
 
 # Installation
 
@@ -48,10 +51,13 @@ contributions receive appropriate recognition.
 # License
 
 
+Distributed under the terms of the [GPLv3](https://opensource.org/licenses/GPL-3.0)
+license, "spelling" is free and open source software
+
 
 # Issues
 
-If you encounter any problems, please 
+If you encounter any problems, please
 [file an issue](https://github.com/resplendent-dev/spelling/issues)
 along with a detailed description.
 
