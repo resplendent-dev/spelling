@@ -1,11 +1,8 @@
 include LICENSE
 include README.md
-<<<<<<< HEAD
-=======
 include short_description.txt
 include requirements.txt
 include spelling/.pyspelling.yml
->>>>>>> 7da3697... Begin adding support for easier execution of spell checker
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
