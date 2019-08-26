@@ -41,13 +41,13 @@ def run_invocation():
     """
     Execute the invocation
     """
-    configpath = pkg_resources.resource_filename(__name__, '.pyspelling.yml')
+    configpath = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
     fail = pyspelling.__main__.run(
         configpath,
         names=[],
         groups=[],
-        binary='',
-        spellchecker='',
+        binary="",
+        spellchecker="",
         sources=[],
         verbose=0,
         debug=False,

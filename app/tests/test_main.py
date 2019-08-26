@@ -11,6 +11,7 @@ def test_main():
     """
     # Setup
     from spelling.__main__ import main
+
     # Exercise
     result = main()  # pylint: disable=assignment-from-no-return
     # Verify
