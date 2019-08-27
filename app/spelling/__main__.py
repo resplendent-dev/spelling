@@ -45,13 +45,7 @@ def run_invocation(display_context):
     """
     configpath = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
     all_results = pyspelling.spellcheck(
-        configpath,
-        names=[],
-        groups=[],
-        binary="",
-        sources=[],
-        verbose=0,
-        debug=False,
+        configpath, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
     )
     misspelt = set()
     for results in all_results:
