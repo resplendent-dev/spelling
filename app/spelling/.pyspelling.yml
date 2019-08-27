@@ -2,7 +2,7 @@ spellchecker: aspell
 
 matrix:
 - name: restructedtext
-  expect_glob_match: N
+  expect_match: false
   sources:
   - ./**/*.rst
   hunspell:
@@ -23,7 +23,7 @@ matrix:
   - pyspelling.filters.url:
 
 - name: markdown
-  expect_glob_match: N
+  expect_match: false
   sources:
   - ./**/*.md
   hunspell:
@@ -44,7 +44,7 @@ matrix:
   - pyspelling.filters.url:
 
 - name: python
-  expect_glob_match: N
+  expect_match: false
   sources:
   - ./**/*.py
   hunspell:
