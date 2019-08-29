@@ -3,16 +3,22 @@ Test modules for spelling.__main__
 """
 
 
-def test_main():
+from click.testing import CliRunner
+
+
+def test_main_emptydir():
     """
-    GIVEN the spelling.__main__
-    module entry point WHEN calling main THEN the call executes successfully
-    with a result of `None`
+    GIVEN an empty directory WHEN calling main THEN the call executes
+    successfully with a exit_code of 0 and a success message
     """
     # Setup
     from spelling.__main__ import main
+    from .util import get_tmpdir
 
-    # Exercise
-    result = main()  # pylint: disable=assignment-from-no-return
+    runner = CliRunner()
+    with get_tmpdir():
+        # Exercise
+        result = runner.invoke(main, [])
     # Verify
-    assert result is None  # nosec
+    assert result.output == 'Spelling check passed :)\n'  # nosec
+    assert result.exit_code == 0  # nosec

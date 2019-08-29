@@ -47,6 +47,7 @@ def run_invocation(display_context):
     all_results = pyspelling.spellcheck(
         configpath, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
     )
+    fail = False
     misspelt = set()
     for results in all_results:
         if results.error:
