@@ -85,5 +85,5 @@ setup(
         ]
         if elem
     ],
-    package_data={"spelling": [".pyspelling.yml"]}
+    package_data={"spelling": [".pyspelling.yml"]},
 )
