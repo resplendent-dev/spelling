@@ -1,2 +1,3 @@
 lxml==4.3.4
 pyspelling
+resplendent=0.2.3
