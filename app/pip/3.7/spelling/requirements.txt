@@ -1,2 +1,2 @@
 pyspelling
-resplendent
+resplendent==0.2.3
