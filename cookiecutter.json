@@ -45,5 +45,6 @@
     ],
     "entry_points": "",
     "extra_manifest": "include spelling/.pyspelling.yml\n",
-    "package_data": "\n    package_data={\"spelling\": [\".pyspelling.yml\"]}"
+    "package_data": "\n    package_data={\"spelling\": [\".pyspelling.yml\"]}",
+    "test_requires": ""
 }
