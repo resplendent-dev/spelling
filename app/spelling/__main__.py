@@ -45,9 +45,6 @@ def run_invocation(display_context):
     Execute the invocation
     """
     configpath = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-    print("Config Path: %s" % (configpath,))
-    with io.open(configpath, "r", encoding="utf-8") as fobj:
-        print(fobj.read())
     all_results = pyspelling.spellcheck(
         configpath, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
     )
