@@ -20,5 +20,5 @@ def test_main_emptydir():
         # Exercise
         result = runner.invoke(main, [])
     # Verify
-    assert result.output == ""  # nosec
+    assert result.output.strip() == "Spelling check passed :)"  # nosec
     assert result.exit_code == 0  # nosec
