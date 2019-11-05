@@ -22,6 +22,8 @@ matrix:
       - code
       - pre
   - pyspelling.filters.url:
+  - unanimous.filters.nonwords:
+      too_short: 3
 
 - name: markdown
   expect_match: false
@@ -44,6 +46,8 @@ matrix:
       - code
       - pre
   - pyspelling.filters.url:
+  - unanimous.filters.nonwords:
+      too_short: 3
 
 - name: python
   expect_match: false
@@ -84,3 +88,5 @@ matrix:
       - open: '(?P<open>`+)'
         close: '(?P=open)'
   - pyspelling.filters.url:
+  - unanimous.filters.nonwords:
+      too_short: 3
