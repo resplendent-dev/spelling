@@ -6,6 +6,7 @@ matrix:
   sources:
   - ./**/*.rst
   hunspell:
+    d: en_AU
   aspell:
     lang: en
   dictionary:
@@ -27,6 +28,7 @@ matrix:
   sources:
   - ./**/*.md
   hunspell:
+    d: en_AU
   aspell:
     lang: en
   dictionary:
@@ -48,7 +50,7 @@ matrix:
   sources:
   - ./**/*.py
   hunspell:
-    d: docs/src/dictionary/hunspell/en_AU
+    d: en_AU
   aspell:
     lang: en
   dictionary:
