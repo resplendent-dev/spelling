@@ -8,6 +8,7 @@ import os
 
 import pytest
 from click.testing import CliRunner
+
 from spelling.__main__ import main
 
 from .util import get_tmpdir
