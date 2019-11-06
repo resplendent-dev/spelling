@@ -4,6 +4,9 @@ Test modules for spelling.__main__
 
 
 from click.testing import CliRunner
+from spelling.__main__ import main
+
+from .util import get_tmpdir
 
 
 def test_main_emptydir():
@@ -12,9 +15,6 @@ def test_main_emptydir():
     successfully with a exit_code of 0 and a success message
     """
     # Setup
-    from spelling.__main__ import main
-    from .util import get_tmpdir
-
     runner = CliRunner()
     with get_tmpdir():
         # Exercise
