@@ -4,6 +4,7 @@ Test modules for spelling.__main__
 
 
 from click.testing import CliRunner
+
 from spelling.__main__ import main
 
 from .util import get_tmpdir
