@@ -19,6 +19,7 @@ BADDATA = {"test.rst": "boguz\n"}
     "args,filedata,expected_result,expected_exit_code",
     [
         ([], {}, "Spelling check passed :)", 0),
+        (["invoke"], {}, "Spelling check passed :)", 0),
         (["--display-context"], {}, "Spelling check passed :)", 0),
         (["--no-display-context"], {}, "Spelling check passed :)", 0),
         ([], BADDATA, "!!!Spelling check failed!!!\nboguz", 1),
