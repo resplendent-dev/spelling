@@ -21,31 +21,34 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.version_option(version=__version__)
 @click.pass_context
 @click.option("--display-context/--no-display-context", default=False)
-def main(ctxt, display_context):
+@click.option("--config", default=None)
+def main(ctxt, display_context, config):
     """
     Used to conveniently invoke spell checking with sensible defaults and
     command line arguments to change the behavior.
     """
     if ctxt.invoked_subcommand is None:
-        run_invocation(display_context)
+        run_invocation(display_context, config)
 
 
 @main.command()
 @click.option("--display-context/--no-display-context", default=False)
-def invoke(display_context):
+@click.option("--config", default=None)
+def invoke(display_context, config):
     """
     Invoke the spell checker
     """
-    run_invocation(display_context)
+    run_invocation(display_context, config)
 
 
-def run_invocation(display_context):
+def run_invocation(display_context, config):
     """
     Execute the invocation
     """
-    configpath = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
+    if config is None:
+        config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
     all_results = pyspelling.spellcheck(
-        configpath, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+        config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
     )
     fail = False
     misspelt = set()
