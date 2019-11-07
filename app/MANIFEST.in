@@ -1,5 +1,8 @@
 include LICENSE
 include README.md
+include short_description.txt
+include requirements.txt
+include spelling/.pyspelling.yml
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]

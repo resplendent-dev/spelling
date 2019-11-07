@@ -14,11 +14,13 @@ find . -iname \*.sh -print0 | xargs -0 shellcheck
 PYVER=3.7
 # Run pyspelling in root to check docs
 "python${PYVER}" -m pyspelling
+# Run black to check all python on 3.7 only
+"python${PYVER}" -m black --check --diff "${BASEDIR}"
 cd "${BASEDIR}/app"
 # Version dependant checks
 for PYVER in ${PYTHONVERS} ; do
   "python${PYVER}" -m flake8 "${MODULES[@]}"
-  "python${PYVER}" -m isort -rc -c --diff "${MODULES[@]}"
+  "python${PYVER}" -m isort -rc -c -m 3 --diff "${MODULES[@]}"
   "python${PYVER}" -m bandit -r "${MODULES[@]}"
   find "${MODULES[@]}" -iname \*.py -print0 | xargs -0 -n 1 "${BASEDIR}/ci/in_docker/pylint.sh" "python${PYVER}"
   PYTEST_FAIL="NO"

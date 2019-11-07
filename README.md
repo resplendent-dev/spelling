@@ -8,6 +8,7 @@
 [![PyPI downloads per month](https://img.shields.io/pypi/dm/spelling.svg)](https://pypi.org/project/spelling)
 [![Documentation Status](https://readthedocs.org/projects/spelling-dev/badge/?version=latest)](https://spelling-dev.readthedocs.io/en/latest/?badge=latest)
 [![Coverage Status](https://coveralls.io/repos/github/resplendent-dev/spelling/badge.svg)](https://coveralls.io/github/resplendent-dev/spelling/)
+[![Black](https://camo.githubusercontent.com/28a51fe3a2c05048d8ca8ecd039d6b1619037326/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f636f64652532307374796c652d626c61636b2d3030303030302e737667)](https://github.com/psf/black)
 
 CI configuration engine for pyspelling using plugins like resplendent and unanimous to make CI integration easier.
 
@@ -30,6 +31,9 @@ Note: if using Python 3.4 the latest version of lxml only supports python 3.5 an
 
 ## Prerequisites:
 - pyspelling
+- wcmatch<5.0
+- resplendent
+- unanimous
 
 
 ## Download from PyPI.org
