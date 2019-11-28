@@ -9,9 +9,8 @@ from __future__ import absolute_import, division, print_function
 import sys
 
 import click
-import pkg_resources
-import pyspelling
 
+from .check import check
 from .version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -43,39 +42,16 @@ def invoke(display_context, config):
 
 def run_invocation(display_context, config):
     """
-    Execute the invocation
+    Call spell checker
     """
-    if config is None:
-        config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-    all_results = pyspelling.spellcheck(
-        config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+    success = check(
+        display_context=display_context,
+        display_summary=not display_context,
+        config=config,
+        fobj=sys.stdout,
     )
-    fail = False
-    misspelt = set()
-    for results in all_results:
-        if results.error:
-            fail = True
-            print("ERROR: %s -- %s" % (results.context, results.error))
-        elif results.words:
-            fail = True
-            misspelt.update(results.words)
-            if display_context:
-                print(
-                    "Misspelled words:\n<%s> %s" % (results.category, results.context)
-                )
-                print("-" * 80)
-                for word in results.words:
-                    print(word)
-                print("-" * 80)
-                print("")
-
-    if fail:
-        print("!!!Spelling check failed!!!")
-        if not display_context:
-            print("\n".join(sorted(misspelt)))
+    if not success:
         sys.exit(1)
-    else:
-        print("Spelling check passed :)")
 
 
 if __name__ == "__main__":
