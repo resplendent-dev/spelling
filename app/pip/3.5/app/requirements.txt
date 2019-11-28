@@ -1,4 +1,4 @@
-lxml==4.3.4
 pyspelling
+wcmatch<5.0
 resplendent
 unanimous

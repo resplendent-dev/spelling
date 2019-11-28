@@ -7,6 +7,5 @@ TOP="$(dirname "${BASEDIR}")"
 
 cd "${TOP}"
 git checkout -- \
- app/pip/3.4/app/requirements.txt \
  app/spelling \
  app/tests
