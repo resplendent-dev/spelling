@@ -11,6 +11,19 @@ def check(display_context, display_summary, config, fobj):
     """
     Execute the invocation
     """
+    success = True
+    for output in check_iter(display_context, display_summary, config):
+        print(output, file=fobj)
+        success = False
+    if success:
+        print("Spelling check passed :)", file=fobj)
+    return success
+
+
+def check_iter(display_context, display_summary, config):
+    """
+    Execute the invocation
+    """
     if config is None:
         config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
     all_results = pyspelling.spellcheck(
@@ -37,12 +50,9 @@ def check(display_context, display_summary, config, fobj):
                 print("", file=fobj)
 
     if fail:
-        print("!!!Spelling check failed!!!", file=fobj)
+        yield "!!!Spelling check failed!!!"
         if display_summary:
-            print("\n".join(sorted(misspelt)), file=fobj)
-        return False
-    print("Spelling check passed :)", file=fobj)
-    return True
+            yield "\n".join(sorted(misspelt))
 
 
 # vim: set ft=python:

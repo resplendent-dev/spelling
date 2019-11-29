@@ -10,7 +10,7 @@ import sys
 
 import click
 
-from .check import check
+from .check import check_iter
 from .version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -44,14 +44,18 @@ def run_invocation(display_context, config):
     """
     Call spell checker
     """
-    success = check(
+    success = True
+    msg_iter = check_iter(
         display_context=display_context,
         display_summary=not display_context,
         config=config,
-        fobj=sys.stdout,
     )
+    for msg in msg_iter:
+        print(msg)
+        success = False
     if not success:
         sys.exit(1)
+    print("Spelling check passed :)")
 
 
 if __name__ == "__main__":
