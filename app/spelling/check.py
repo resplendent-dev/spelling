@@ -34,20 +34,17 @@ def check_iter(display_context, display_summary, config):
     for results in all_results:
         if results.error:
             fail = True
-            print("ERROR: %s -- %s" % (results.context, results.error), file=fobj)
+            yield "ERROR: %s -- %s" % (results.context, results.error)
         elif results.words:
             fail = True
             misspelt.update(results.words)
             if display_context:
-                print(
-                    "Misspelled words:\n<%s> %s" % (results.category, results.context),
-                    file=fobj,
-                )
-                print("-" * 80, file=fobj)
+                yield "Misspelled words:\n<%s> %s" % (results.category, results.context)
+                yield "-" * 80
                 for word in results.words:
-                    print(word, file=fobj)
-                print("-" * 80, file=fobj)
-                print("", file=fobj)
+                    yield word
+                yield "-" * 80
+                yield ""
 
     if fail:
         yield "!!!Spelling check failed!!!"
