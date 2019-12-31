@@ -76,9 +76,15 @@ matrix:
         (["invoke"], {}, "Spelling check passed :)", 0, None),
         (["--display-context"], {}, "Spelling check passed :)", 0, None),
         (["--no-display-context"], {}, "Spelling check passed :)", 0, None),
-        ([], BADDATA, "!!!Spelling check failed!!!\nboguz", 1, None),
         (
-            ["--display-context"],
+            ["--no-display-context", "--display-summary"],
+            BADDATA,
+            "!!!Spelling check failed!!!\nboguz",
+            1,
+            None,
+        ),
+        (
+            ["--display-context", "--no-display-summary"],
             BADDATA,
             "Misspelled words:\n"
             "<text> ./test.rst: html>body>div>p\n"
@@ -88,13 +94,6 @@ matrix:
             "--------------------------------------"
             "------------------------------------------\n"
             "\n!!!Spelling check failed!!!",
-            1,
-            None,
-        ),
-        (
-            ["--no-display-context"],
-            BADDATA,
-            "!!!Spelling check failed!!!\nboguz",
             1,
             None,
         ),
