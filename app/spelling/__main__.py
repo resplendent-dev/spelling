@@ -48,9 +48,7 @@ def run_invocation(display_context, display_summary, config):
     """
     success = True
     msg_iter = check_iter(
-        display_context=display_context,
-        display_summary=display_summary,
-        config=config,
+        display_context=display_context, display_summary=display_summary, config=config
     )
     for msg in msg_iter:
         print(msg)
