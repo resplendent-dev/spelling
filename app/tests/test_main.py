@@ -14,6 +14,15 @@ from spelling.__main__ import main
 from .util import get_tmpdir
 
 BADDATA = {"test.rst": "boguz\n"}
+BADMARKDOWN = {
+    "test.md": """
+# test
+
+some bad wordishes that are short like jk.
+
+are thuj word found.
+"""
+}
 BADCONFIG = """
 spellchecker: aspell
 
@@ -97,6 +106,30 @@ matrix:
             1,
             None,
         ),
+        (
+            [],
+            BADMARKDOWN,
+            "Misspelled words:\n"
+            "<text> ./test.md: html>body>p\n"
+            "--------------------------------------"
+            "------------------------------------------\n"
+            "wordishes\n"
+            "--------------------------------------"
+            "------------------------------------------\n"
+            "\n"
+            "Misspelled words:\n"
+            "<text> ./test.md: html>body>p\n"
+            "--------------------------------------"
+            "------------------------------------------\n"
+            "thuj\n"
+            "--------------------------------------"
+            "------------------------------------------\n"
+            "\n!!!Spelling check failed!!!\n"
+            "thuj\n"
+            "wordishes",
+            1,
+            None,
+        ),
     ],
 )
 def test_main_emptydir(args, filedata, expected_result, expected_exit_code, config):
@@ -119,5 +152,5 @@ def test_main_emptydir(args, filedata, expected_result, expected_exit_code, conf
         # Exercise
         result = runner.invoke(main, args)
     # Verify
-    assert result.output.strip() == expected_result  # nosec
-    assert result.exit_code == expected_exit_code  # nosec
+    assert result.output.strip() == expected_result  # nosec # noqa=S101
+    assert result.exit_code == expected_exit_code  # nosec # noqa=S101
