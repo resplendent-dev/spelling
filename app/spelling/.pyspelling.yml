@@ -28,7 +28,7 @@ matrix:
 - name: markdown
   expect_match: false
   sources:
-  - ./**/(*.md|!CHANGELOG.md)
+  - ./**/*.md
   hunspell:
     d: en_AU
   aspell:
