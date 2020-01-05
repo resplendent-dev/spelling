@@ -21,7 +21,12 @@ BADMARKDOWN = {
 some bad wordishes that are short like jk.
 
 are thuj word found.
-"""
+""",
+    "CHANGELOG.md": """
+#  test
+
+spellingish errars should be ignored here.
+""",
 }
 BADCONFIG = """
 spellchecker: aspell
@@ -30,7 +35,7 @@ matrix:
 - name: restructedtext
   expect_match: false
   sources:
-  - ./**/*.rst
+  - "**/*.rst"
   hunspell:
     d: en_AU
   aspell:
@@ -48,7 +53,7 @@ matrix:
 - name: restructedtext
   expect_match: false
   sources:
-  - ./**/*.rst
+  - "**/*.rst"
   hunspell:
     d: en_AU
   aspell:
@@ -69,7 +74,7 @@ matrix:
         (
             [],
             BADDATA,
-            "ERROR: ./test.rst -- Failure during filtering\n"
+            "ERROR: test.rst -- Failure during filtering\n"
             "!!!Spelling check failed!!!",
             1,
             BADCONFIG,
@@ -77,7 +82,7 @@ matrix:
         (
             [],
             BADDATA,
-            "ERROR: ./test.rst -- Failure during filtering\n"
+            "ERROR: test.rst -- Failure during filtering\n"
             "!!!Spelling check failed!!!",
             1,
             BADCONFIGFILTER,
@@ -96,7 +101,7 @@ matrix:
             ["--display-context", "--no-display-summary"],
             BADDATA,
             "Misspelled words:\n"
-            "<text> ./test.rst: html>body>div>p\n"
+            "<text> test.rst: html>body>div>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "boguz\n"
@@ -110,7 +115,7 @@ matrix:
             [],
             BADMARKDOWN,
             "Misspelled words:\n"
-            "<text> ./test.md: html>body>p\n"
+            "<text> test.md: html>body>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "wordishes\n"
@@ -118,7 +123,7 @@ matrix:
             "------------------------------------------\n"
             "\n"
             "Misspelled words:\n"
-            "<text> ./test.md: html>body>p\n"
+            "<text> test.md: html>body>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "thuj\n"
