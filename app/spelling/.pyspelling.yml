@@ -4,7 +4,9 @@ matrix:
 - name: restructedtext
   expect_match: false
   sources:
-  - ./**/*.rst
+  -
+    - "**/*.rst"
+    - "!CHANGE*"
   hunspell:
     d: en_AU
   aspell:
@@ -28,7 +30,9 @@ matrix:
 - name: markdown
   expect_match: false
   sources:
-  - ./**/*.md
+  -
+    - "**/*.md"
+    - "!CHANGE*"
   hunspell:
     d: en_AU
   aspell:
@@ -52,7 +56,7 @@ matrix:
 - name: python
   expect_match: false
   sources:
-  - ./**/*.py
+  - "**/*.py"
   hunspell:
     d: en_AU
   aspell:
