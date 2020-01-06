@@ -9,7 +9,7 @@ import dataset
 
 class StorageHandler(object):
     """
-    Simple dataset json storage
+    Simple storage implementation.
     """
 
     def __init__(self, storage_path):
@@ -19,7 +19,7 @@ class StorageHandler(object):
     @staticmethod
     def get_db(storage_path):
         """
-        dataset storage
+        Open storage connection.
         """
         if storage_path is None:
             return dataset.connect("sqlite:///:memory:")
@@ -27,7 +27,7 @@ class StorageHandler(object):
 
     def load_word_count(self):
         """
-        Retrieve json word count
+        Retrieve stored word count.
         """
         table = self.table
         row = table.find_one(name="word_count")
@@ -37,7 +37,7 @@ class StorageHandler(object):
 
     def save_word_count(self, value):
         """
-        Save json word count
+        Save word count to storage.
         """
         table = self.table
         table.upsert({"name": "word_count", "value": json.dumps(value)}, keys=["name"])
@@ -45,6 +45,6 @@ class StorageHandler(object):
 
 def get_store(storage_path):
     """
-    Return the dataset handler for storing details.
+    Return the handler for storing details.
     """
     return StorageHandler(storage_path)
