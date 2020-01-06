@@ -53,7 +53,7 @@ def check_iter(display_context, display_summary, config, storage_path):
 
 def run_spell_check(config, storage_path):
     """
-    Perform the spell check and keep a record of misspelt words.
+    Perform the spell check and keep a record of spelling mistakes.
     """
     if config is None:
         config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
