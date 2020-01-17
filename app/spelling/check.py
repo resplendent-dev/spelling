@@ -57,9 +57,11 @@ def run_spell_check(config, storage_path):
     """
     if config is None:
         config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-    all_results = list(pyspelling.spellcheck(
-        config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
-    ))
+    all_results = list(
+        pyspelling.spellcheck(
+            config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+        )
+    )
     storage = get_store(storage_path)
     wordcount = storage.load_word_count()
     for results in all_results:
