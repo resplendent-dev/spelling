@@ -4,7 +4,6 @@ Main invocation for spelling check
 from __future__ import absolute_import, division, print_function
 
 import pkg_resources
-
 import pyspelling
 
 from spelling.store import get_store
