@@ -22,33 +22,38 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option("--display-context/--no-display-context", default=True)
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--config", default=None)
-def main(ctxt, display_context, display_summary, config):
+@click.option("--storage-path", default=None)
+def main(ctxt, display_context, display_summary, config, storage_path):
     """
     Used to conveniently invoke spell checking with sensible defaults and
     command line arguments to change the behavior.
     """
     if ctxt.invoked_subcommand is None:
-        run_invocation(display_context, display_summary, config)
+        run_invocation(display_context, display_summary, config, storage_path)
 
 
 @main.command()
 @click.option("--display-context/--no-display-context", default=True)
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--config", default=None)
-def invoke(display_context, display_summary, config):
+@click.option("--storage-path", default=None)
+def invoke(display_context, display_summary, config, storage_path):
     """
     Invoke the spell checker
     """
-    run_invocation(display_context, display_summary, config)
+    run_invocation(display_context, display_summary, config, storage_path)
 
 
-def run_invocation(display_context, display_summary, config):
+def run_invocation(display_context, display_summary, config, storage_path):
     """
     Call spell checker
     """
     success = True
     msg_iter = check_iter(
-        display_context=display_context, display_summary=display_summary, config=config
+        display_context=display_context,
+        display_summary=display_summary,
+        config=config,
+        storage_path=storage_path,
     )
     for msg in msg_iter:
         print(msg)

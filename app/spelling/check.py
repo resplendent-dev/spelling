@@ -6,13 +6,15 @@ from __future__ import absolute_import, division, print_function
 import pkg_resources
 import pyspelling
 
+from spelling.store import get_store
 
-def check(display_context, display_summary, config, fobj):
+
+def check(display_context, display_summary, config, storage_path, fobj):
     """
     Execute the invocation
     """
     success = True
-    for output in check_iter(display_context, display_summary, config):
+    for output in check_iter(display_context, display_summary, config, storage_path):
         print(output, file=fobj)
         success = False
     if success:
@@ -20,15 +22,11 @@ def check(display_context, display_summary, config, fobj):
     return success
 
 
-def check_iter(display_context, display_summary, config):
+def check_iter(display_context, display_summary, config, storage_path):
     """
     Execute the invocation
     """
-    if config is None:
-        config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-    all_results = pyspelling.spellcheck(
-        config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
-    )
+    all_results = run_spell_check(config, storage_path)
     fail = False
     misspelt = set()
     for results in all_results:
@@ -50,6 +48,26 @@ def check_iter(display_context, display_summary, config):
         yield "!!!Spelling check failed!!!"
         if display_summary:
             yield "\n".join(sorted(misspelt))
+
+
+def run_spell_check(config, storage_path):
+    """
+    Perform the spell check and keep a record of spelling mistakes.
+    """
+    if config is None:
+        config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
+    all_results = list(
+        pyspelling.spellcheck(
+            config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+        )
+    )
+    storage = get_store(storage_path)
+    wordcount = storage.load_word_count()
+    for results in all_results:
+        for word in results.words:
+            wordcount[word] = wordcount.get(word, 0) + 1
+    storage.save_word_count(wordcount)
+    return all_results
 
 
 # vim: set ft=python:
