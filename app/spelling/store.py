@@ -23,7 +23,7 @@ class StorageHandler(object):
         """
         if storage_path is None:
             return dataset.connect("sqlite:///:memory:")
-        return dataset.connect(f"sqlite:///{storage_path}")
+        return dataset.connect("sqlite:///%s" % (storage_path,))
 
     def load_word_count(self):
         """
