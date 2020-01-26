@@ -198,7 +198,7 @@ def test_main_repo_data(path, record):
     else:
         expected_exit_code = None
     with get_tmpdir() as extractpath:
-        with zipfile.ZipFile(datazippath) as zipobj:
+        with zipfile.ZipFile(str(datazippath)) as zipobj:
             zipobj.extractall(extractpath)
             # Exercise
             result = runner.invoke(main, args)
