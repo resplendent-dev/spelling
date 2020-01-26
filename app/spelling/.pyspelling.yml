@@ -8,6 +8,8 @@ matrix:
     - "**/*.rst"
     - "!CHANGE*"
     - "!release*"
+    - "!announce*"
+    - "!news*"
   hunspell:
     d: en_AU
   aspell:
@@ -35,6 +37,8 @@ matrix:
     - "**/*.md"
     - "!CHANGE*"
     - "!release*"
+    - "!announce*"
+    - "!news*"
   hunspell:
   hunspell:
     d: en_AU
