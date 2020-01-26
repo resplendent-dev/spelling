@@ -7,6 +7,7 @@ import io
 import os
 import pathlib
 import sys
+import zipfile
 
 import pytest
 from click.testing import CliRunner
@@ -183,8 +184,7 @@ def test_main_repo_data(path, record):
     # Setup
     args = []
     runner = CliRunner()
-    datapath = path / "data"
-    os.chdir(datapath)
+    datazippath = path / "data.zip"
     expected_result_path = path / "expected_result.txt"
     if not record or expected_result_path.exists():
         with io.open(expected_result_path, "r", encoding="utf-8") as fobj:
@@ -197,8 +197,11 @@ def test_main_repo_data(path, record):
             expected_exit_code = int(fobj.read())
     else:
         expected_exit_code = None
-    # Exercise
-    result = runner.invoke(main, args)
+    with get_tmpdir() as extractpath:
+        with zipfile.ZipFile(datazippath) as zipobj:
+            zipobj.extractall(extractpath)
+            # Exercise
+            result = runner.invoke(main, args)
     # Verify
     if not record or expected_result_path.exists():
         assert result.output.strip() == expected_result  # nosec # noqa=S101
