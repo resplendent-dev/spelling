@@ -206,10 +206,10 @@ def test_main_repo_data(path, record):
     if not record or expected_result_path.exists():
         assert result.output.strip() == expected_result  # nosec # noqa=S101
     else:
-        with io.open(path / "expected_result.txt", "w", encoding="utf-8") as fobj:
+        with io.open(str(expected_result_path), "w", encoding="utf-8") as fobj:
             fobj.write(result.output)
     if not record or expected_exit_code_path.exists():
         assert result.exit_code == expected_exit_code  # nosec # noqa=S101
     else:
-        with io.open(path / "expected_exit_code.txt", "w", encoding="utf-8") as fobj:
+        with io.open(str(expected_exit_code_path), "w", encoding="utf-8") as fobj:
             print(str(result.exit_code), file=fobj)
