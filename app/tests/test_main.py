@@ -187,13 +187,13 @@ def test_main_repo_data(path, record):
     datazippath = path / "data.zip"
     expected_result_path = path / "expected_result.txt"
     if not record or expected_result_path.exists():
-        with io.open(expected_result_path, "r", encoding="utf-8") as fobj:
+        with io.open(str(expected_result_path), "r", encoding="utf-8") as fobj:
             expected_result = fobj.read().strip()
     else:
         expected_result = None
     expected_exit_code_path = path / "expected_exit_code.txt"
     if not record or expected_exit_code_path.exists():
-        with io.open(expected_exit_code_path, "r", encoding="utf-8") as fobj:
+        with io.open(str(expected_exit_code_path), "r", encoding="utf-8") as fobj:
             expected_exit_code = int(fobj.read())
     else:
         expected_exit_code = None
