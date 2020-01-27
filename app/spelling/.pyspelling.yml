@@ -6,10 +6,14 @@ matrix:
   sources:
   -
     - "**/*.rst"
-    - "!CHANGE*"
-    - "!release*"
-    - "!announce*"
-    - "!news*"
+    - "!**/CHANGE*"
+    - "!**/change*"
+    - "!**/RELEASE*"
+    - "!**/release*"
+    - "!**/ANNOUNCE*"
+    - "!**/announce*"
+    - "!**/NEWS*"
+    - "!**/news*"
   hunspell:
     d: en_AU
   aspell:
@@ -35,10 +39,14 @@ matrix:
   sources:
   -
     - "**/*.md"
-    - "!CHANGE*"
-    - "!release*"
-    - "!announce*"
-    - "!news*"
+    - "!**/CHANGE*"
+    - "!**/change*"
+    - "!**/RELEASE*"
+    - "!**/release*"
+    - "!**/ANNOUNCE*"
+    - "!**/announce*"
+    - "!**/NEWS*"
+    - "!**/news*"
   hunspell:
   hunspell:
     d: en_AU
