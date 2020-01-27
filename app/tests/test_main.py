@@ -205,7 +205,7 @@ def test_main_repo_data(path, record):
     # Verify
     if not record or expected_result_path.exists():
         result_sorted_lines = sorted(result.output.strip().splitlines())
-        expected_sorted_result = sorted(expected_result.split().splitlines())
+        expected_sorted_result = sorted(expected_result.strip().splitlines())
         assert result_sorted_lines == expected_sorted_result  # nosec # noqa=S101
     else:
         with io.open(str(expected_result_path), "w", encoding="utf-8") as fobj:
