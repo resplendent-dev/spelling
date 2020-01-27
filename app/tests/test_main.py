@@ -204,7 +204,9 @@ def test_main_repo_data(path, record):
             result = runner.invoke(main, args)
     # Verify
     if not record or expected_result_path.exists():
-        assert result.output.strip() == expected_result  # nosec # noqa=S101
+        result_sorted_lines = sorted(result.output.strip().splitlines())
+        expected_sorted_result = sorted(expected_result.split().splitlines())
+        assert result_sorted_lines == expected_sorted_result  # nosec # noqa=S101
     else:
         with io.open(str(expected_result_path), "w", encoding="utf-8") as fobj:
             fobj.write(result.output)
