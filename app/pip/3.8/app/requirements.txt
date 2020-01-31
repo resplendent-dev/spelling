@@ -2,4 +2,4 @@ dataset
 pyspelling
 wcmatch<5.0
 resplendent
-unanimous
+unanimous>=0.4.0

@@ -25,7 +25,7 @@
     "build_url": "https://dev.azure.com/{{ cookiecutter.azure_user }}/{{ cookiecutter.azure_project }}/_build/latest?definitionId={{ cookiecutter.azure_buildid }}&branchName=master",
     "pypi_name": "{{ cookiecutter.project_name }}",
     "readthedocs_name": "spelling-dev",
-    "app_requirements": "dataset\npyspelling\nwcmatch<5.0\nresplendent\nunanimous",
+    "app_requirements": "dataset\npyspelling\nwcmatch<5.0\nresplendent\nunanimous>=0.4.0",
     "cov_fail_under": "40",
     "travis_status_url": "https://travis-ci.org/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}.svg?branch=master",
     "travis_build_url": "https://travis-ci.org/{{ cookiecutter.github_org }}/{{ cookiecutter.github_repo }}",
