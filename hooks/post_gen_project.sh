@@ -8,4 +8,6 @@ TOP="$(dirname "${BASEDIR}")"
 cd "${TOP}"
 git checkout -- \
  app/spelling \
- app/tests
+ app/tests \
+ app/data \
+ app/conftest.py
