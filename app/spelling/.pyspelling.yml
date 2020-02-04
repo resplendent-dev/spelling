@@ -33,6 +33,8 @@ matrix:
   - pyspelling.filters.url:
   - unanimous.filters.nonwords:
       too_short: 3
+      wordlist:
+      - "**/spelling_wordlist.txt"
 
 - name: markdown
   expect_match: false
@@ -67,6 +69,8 @@ matrix:
   - pyspelling.filters.url:
   - unanimous.filters.nonwords:
       too_short: 3
+      wordlist:
+      - "**/spelling_wordlist.txt"
 
 - name: python
   expect_match: false
@@ -109,3 +113,5 @@ matrix:
   - pyspelling.filters.url:
   - unanimous.filters.nonwords:
       too_short: 3
+      wordlist:
+      - "**/spelling_wordlist.txt"
