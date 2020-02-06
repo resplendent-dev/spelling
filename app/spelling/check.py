@@ -54,13 +54,12 @@ def run_spell_check(config, storage_path):
     """
     Perform the spell check and keep a record of spelling mistakes.
     """
-    if config is None:
-        config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-    all_results = list(
-        pyspelling.spellcheck(
-            config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+    with get_config_context_manager(config) as ctxt:
+        all_results = list(
+            pyspelling.spellcheck(
+                ctxt.config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+            )
         )
-    )
     storage = get_store(storage_path)
     wordcount = storage.load_word_count()
     for results in all_results:
