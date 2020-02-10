@@ -3,3 +3,4 @@ pyspelling
 wcmatch<5.0
 resplendent
 unanimous>=0.5.2
+PyYAML
