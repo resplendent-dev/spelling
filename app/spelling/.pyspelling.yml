@@ -14,6 +14,8 @@ matrix:
     - "!**/announce*"
     - "!**/NEWS*"
     - "!**/news*"
+    - "!**/HISTORY*"
+    - "!**/history*"
   hunspell:
     d: en_AU
   aspell:
@@ -49,6 +51,8 @@ matrix:
     - "!**/announce*"
     - "!**/NEWS*"
     - "!**/news*"
+    - "!**/HISTORY*"
+    - "!**/history*"
   hunspell:
   hunspell:
     d: en_AU
