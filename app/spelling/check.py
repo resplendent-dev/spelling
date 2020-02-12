@@ -7,6 +7,7 @@ import pkg_resources
 import pyspelling
 
 from spelling.store import get_store
+from spelling.config import get_config_context_manager
 
 
 def check(display_context, display_summary, config, storage_path, fobj):

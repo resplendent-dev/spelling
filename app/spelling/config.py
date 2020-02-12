@@ -3,6 +3,7 @@ Tools to load the default `.pyspelling` config and update it with the
 nonwords dictionary and the custom exclusions.
 """
 
+import io
 import pathlib
 import shutil
 import tempfile
@@ -46,7 +47,8 @@ class ConfigContext(object):
         """
         data = self.load(self.origconfig)
         self.update(data)
-        self.save(self.config, data)
+        with io.open(self.config, "w", encoding="utf-8") as fobj:
+            self.save(data, fobj)
 
     @staticmethod
     def update(data):
