@@ -32,7 +32,8 @@ class ConfigContext(object):
         """
         if config is None:
             config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-        return yaml.safe_load(config)
+        with io.open(config, "r", encoding="utf-8") as fobj:
+            return yaml.safe_load(fobj)
 
     @staticmethod
     def save(target, yamldata):
@@ -55,7 +56,6 @@ class ConfigContext(object):
         """
         Reconfigure the loaded yaml data as required
         """
-        print(repr(data))
 
 
 @contextmanager
