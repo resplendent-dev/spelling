@@ -11,6 +11,7 @@ from contextlib import contextmanager
 
 import pkg_resources
 import yaml
+from unanimous.store import get_current_non_words
 
 
 class ConfigContext(object):
@@ -23,6 +24,7 @@ class ConfigContext(object):
         self.tmppath = tmppath
         self.origconfig = config
         self.config = tmppath / ".pyspelling"
+        self.wordlist = tmppath / "wordlist.txt"
         self.init()
 
     @staticmethod
@@ -47,15 +49,21 @@ class ConfigContext(object):
         Prepare the updated config
         """
         data = self.load(self.origconfig)
+        nonwords = get_current_non_words()
+        with io.open(self.wordlist, "w", encoding="utf-8") as fobj:
+            for nonword in nonwords:
+                print(nonword, file=fobj)
         self.update(data)
         with io.open(self.config, "w", encoding="utf-8") as fobj:
             self.save(data, fobj)
 
-    @staticmethod
-    def update(data):
+    def update(self, data):
         """
         Reconfigure the loaded yaml data as required
         """
+        wordlists = [str(self.wordlist)]
+        for entry in data["matrix"]:
+            entry["dictionary"].setdefault("wordlists", []).extend(wordlists)
 
 
 @contextmanager
