@@ -5,15 +5,15 @@ matrix:
   expect_match: false
   sources:
   -
-    - "**/*.rst"
-    - "!**/CHANGE*"
-    - "!**/change*"
-    - "!**/RELEASE*"
-    - "!**/release*"
-    - "!**/ANNOUNCE*"
-    - "!**/announce*"
-    - "!**/NEWS*"
-    - "!**/news*"
+    - "${DIR}/**/*.rst"
+    - "!${DIR}/**/CHANGE*"
+    - "!${DIR}/**/change*"
+    - "!${DIR}/**/RELEASE*"
+    - "!${DIR}/**/release*"
+    - "!${DIR}/**/ANNOUNCE*"
+    - "!${DIR}/**/announce*"
+    - "!${DIR}/**/NEWS*"
+    - "!${DIR}/**/news*"
   hunspell:
     d: en_AU
   aspell:
@@ -34,21 +34,21 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"
 
 - name: markdown
   expect_match: false
   sources:
   -
-    - "**/*.md"
-    - "!**/CHANGE*"
-    - "!**/change*"
-    - "!**/RELEASE*"
-    - "!**/release*"
-    - "!**/ANNOUNCE*"
-    - "!**/announce*"
-    - "!**/NEWS*"
-    - "!**/news*"
+    - "${DIR}/**/*.md"
+    - "!${DIR}/**/CHANGE*"
+    - "!${DIR}/**/change*"
+    - "!${DIR}/**/RELEASE*"
+    - "!${DIR}/**/release*"
+    - "!${DIR}/**/ANNOUNCE*"
+    - "!${DIR}/**/announce*"
+    - "!${DIR}/**/NEWS*"
+    - "!${DIR}/**/news*"
   hunspell:
   hunspell:
     d: en_AU
@@ -70,12 +70,13 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"
 
 - name: python
   expect_match: false
   sources:
-  - "**/*.py"
+  -
+    - "${DIR}/**/*.py"
   hunspell:
     d: en_AU
   aspell:
@@ -114,4 +115,4 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"

@@ -6,6 +6,7 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
+import pathlib
 import sys
 
 import click
@@ -23,13 +24,18 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--config", default=None)
 @click.option("--storage-path", default=None)
-def main(ctxt, display_context, display_summary, config, storage_path):
+@click.option("--working-path", default=None)
+def main(  # pylint: disable=too-many-arguments,bad-continuation
+    ctxt, display_context, display_summary, config, storage_path, working_path
+):
     """
     Used to conveniently invoke spell checking with sensible defaults and
     command line arguments to change the behavior.
     """
     if ctxt.invoked_subcommand is None:
-        run_invocation(display_context, display_summary, config, storage_path)
+        run_invocation(
+            display_context, display_summary, config, storage_path, working_path
+        )
 
 
 @main.command()
@@ -37,23 +43,29 @@ def main(ctxt, display_context, display_summary, config, storage_path):
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--config", default=None)
 @click.option("--storage-path", default=None)
-def invoke(display_context, display_summary, config, storage_path):
+@click.option("--working-path", default=None)
+def invoke(display_context, display_summary, config, storage_path, working_path):
     """
     Invoke the spell checker
     """
-    run_invocation(display_context, display_summary, config, storage_path)
+    run_invocation(display_context, display_summary, config, storage_path, working_path)
 
 
-def run_invocation(display_context, display_summary, config, storage_path):
+def run_invocation(  # pylint: disable=bad-continuation
+    display_context, display_summary, config, storage_path, working_path
+):
     """
     Call spell checker
     """
     success = True
+    if working_path is None:
+        working_path = pathlib.Path(".").resolve()
     msg_iter = check_iter(
         display_context=display_context,
         display_summary=display_summary,
         config=config,
         storage_path=storage_path,
+        workingpath=working_path,
     )
     for msg in msg_iter:
         print(msg)

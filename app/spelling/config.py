@@ -14,15 +14,16 @@ import yaml
 from unanimous.store import get_current_non_words
 
 
-class ConfigContext(object):
+class ConfigContext:
     """
     Class to load the default `.pyspelling` config and update it with the
     nonwords dictionary and the custom exclusions.
     """
 
-    def __init__(self, tmppath, config):
+    def __init__(self, tmppath, config, workingpath):
         self.tmppath = tmppath
         self.origconfig = config
+        self.workingpath = workingpath
         self.config = tmppath / ".pyspelling"
         self.wordlist = tmppath / "wordlist.txt"
         self.init()
@@ -64,15 +65,22 @@ class ConfigContext(object):
         wordlists = [str(self.wordlist)]
         for entry in data["matrix"]:
             entry["dictionary"].setdefault("wordlists", []).extend(wordlists)
+            entry["sources"] = [
+                [
+                    source.replace("${DIR}", str(self.workingpath))
+                    for source in entry_sources
+                ]
+                for entry_sources in entry["sources"]
+            ]
 
 
 @contextmanager
-def get_config_context_manager(config=None):
+def get_config_context_manager(workingpath, config=None):
     """
     Loads the default `.pyspelling` config or the one provided and then
     updates it with the nonwords dictionary and the custom exclusions in a
     context manager that cleans up on completion.
     """
     tmpdir = tempfile.mkdtemp()
-    yield ConfigContext(pathlib.Path(tmpdir), config)
+    yield ConfigContext(pathlib.Path(tmpdir), config, workingpath)
     shutil.rmtree(tmpdir)

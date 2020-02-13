@@ -3,19 +3,23 @@ Main invocation for spelling check
 """
 from __future__ import absolute_import, division, print_function
 
-import pkg_resources
-import pyspelling
+import pathlib
 
-from spelling.store import get_store
+import pyspelling
 from spelling.config import get_config_context_manager
+from spelling.store import get_store
 
 
 def check(display_context, display_summary, config, storage_path, fobj):
     """
     Execute the invocation
     """
+    workingpath = pathlib.Path(".").resolve()
     success = True
-    for output in check_iter(display_context, display_summary, config, storage_path):
+    check_iter_output = check_iter(
+        display_context, display_summary, config, storage_path, workingpath
+    )
+    for output in check_iter_output:
         print(output, file=fobj)
         success = False
     if success:
@@ -23,11 +27,11 @@ def check(display_context, display_summary, config, storage_path, fobj):
     return success
 
 
-def check_iter(display_context, display_summary, config, storage_path):
+def check_iter(display_context, display_summary, config, storage_path, workingpath):
     """
     Execute the invocation
     """
-    all_results = run_spell_check(config, storage_path)
+    all_results = run_spell_check(config, storage_path, workingpath)
     fail = False
     misspelt = set()
     for results in all_results:
@@ -51,14 +55,20 @@ def check_iter(display_context, display_summary, config, storage_path):
             yield "\n".join(sorted(misspelt))
 
 
-def run_spell_check(config, storage_path):
+def run_spell_check(config, storage_path, workingpath):
     """
     Perform the spell check and keep a record of spelling mistakes.
     """
-    with get_config_context_manager(config) as ctxt:
+    with get_config_context_manager(workingpath, config) as ctxt:
         all_results = list(
             pyspelling.spellcheck(
-                ctxt.config, names=[], groups=[], binary="", sources=[], verbose=0, debug=False
+                ctxt.config,
+                names=[],
+                groups=[],
+                binary="",
+                sources=[],
+                verbose=0,
+                debug=False,
             )
         )
     storage = get_store(storage_path)
