@@ -11,8 +11,8 @@ import sys
 
 import click
 
-from .check import check_iter
-from .version import __version__
+from spelling.check import check_iter
+from spelling.version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 
