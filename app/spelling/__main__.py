@@ -11,7 +11,6 @@ import pathlib
 import sys
 
 import click
-import q
 import unanimous
 
 from spelling.check import check_iter
@@ -60,8 +59,6 @@ def run_invocation(  # pylint: disable=bad-continuation
     """
     Call spell checker
     """
-    q(f"starting {datetime.datetime.now()!r}")
-    q(f"unanimous version {unanimous.version.__version__}")
     success = True
     if working_path is None:
         working_path = pathlib.Path(".").resolve()
