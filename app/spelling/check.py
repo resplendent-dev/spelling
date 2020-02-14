@@ -4,9 +4,7 @@ Main invocation for spelling check
 from __future__ import absolute_import, division, print_function
 
 import pathlib
-import traceback
 
-import q
 import pyspelling
 
 from spelling.config import get_config_context_manager
@@ -62,28 +60,18 @@ def run_spell_check(config, storage_path, workingpath):
     """
     Perform the spell check and keep a record of spelling mistakes.
     """
-    q("loading config")
     with get_config_context_manager(workingpath, config) as ctxt:
-        q("running spellcheck")
-        try:
-            all_results = list(
-                pyspelling.spellcheck(
-                    ctxt.config,
-                    names=[],
-                    groups=[],
-                    binary="",
-                    sources=[],
-                    verbose=0,
-                    debug=False,
-                )
+        all_results = list(
+            pyspelling.spellcheck(
+                ctxt.config,
+                names=[],
+                groups=[],
+                binary="",
+                sources=[],
+                verbose=0,
+                debug=False,
             )
-        except:
-            q(traceback.format_exc())
-            raise
-        finally:
-            q("finally")
-        q("ran spellcheck")
-    q("cleaned config")
+        )
     storage = get_store(storage_path)
     wordcount = storage.load_word_count()
     for results in all_results:
