@@ -6,12 +6,10 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
-import datetime
 import pathlib
 import sys
 
 import click
-import unanimous
 
 from spelling.check import check_iter
 from spelling.version import __version__
