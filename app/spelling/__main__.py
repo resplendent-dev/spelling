@@ -6,8 +6,10 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
+import io
 import pathlib
 import sys
+import traceback
 
 import click
 
@@ -57,22 +59,29 @@ def run_invocation(  # pylint: disable=bad-continuation
     """
     Call spell checker
     """
-    success = True
-    if working_path is None:
-        working_path = pathlib.Path(".").resolve()
-    msg_iter = check_iter(
-        display_context=display_context,
-        display_summary=display_summary,
-        config=config,
-        storage_path=storage_path,
-        workingpath=working_path,
-    )
-    for msg in msg_iter:
-        print(msg)
-        success = False
-    if not success:
-        sys.exit(1)
-    print("Spelling check passed :)")
+    try:
+        with io.open("/home/tgates/out.txt", "w", encoding="utf-8") as fobj:
+            print("start", file=fobj)
+        success = True
+        if working_path is None:
+            working_path = pathlib.Path(".").resolve()
+        msg_iter = check_iter(
+            display_context=display_context,
+            display_summary=display_summary,
+            config=config,
+            storage_path=storage_path,
+            workingpath=working_path,
+        )
+        for msg in msg_iter:
+            print(msg)
+            success = False
+        if not success:
+            sys.exit(1)
+        print("Spelling check passed :)")
+    except Exception:
+        with io.open("/home/tgates/out.txt", "w", encoding="utf-8") as fobj:
+            print(traceback.format_exc(), file=fobj)
+        raise
 
 
 if __name__ == "__main__":
