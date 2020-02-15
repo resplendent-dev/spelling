@@ -7,9 +7,9 @@ python -m spelling
 from __future__ import absolute_import, division, print_function
 
 import io
+import logging
 import pathlib
 import sys
-import traceback
 
 import click
 
@@ -59,6 +59,7 @@ def run_invocation(  # pylint: disable=bad-continuation
     """
     Call spell checker
     """
+    logging.basicConfig()
     try:
         with io.open("/home/tgates/out.txt", "w", encoding="utf-8") as fobj:
             print("start", file=fobj)
@@ -79,8 +80,7 @@ def run_invocation(  # pylint: disable=bad-continuation
             sys.exit(1)
         print("Spelling check passed :)")
     except Exception:
-        with io.open("/home/tgates/out.txt", "w", encoding="utf-8") as fobj:
-            print(traceback.format_exc(), file=fobj)
+        logging.exception("Error during processing.")
         raise
 
 
