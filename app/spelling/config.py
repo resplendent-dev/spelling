@@ -4,6 +4,7 @@ nonwords dictionary and the custom exclusions.
 """
 
 import io
+import logging
 import pathlib
 import shutil
 import tempfile
@@ -56,6 +57,7 @@ class ConfigContext:
                 print(nonword, file=fobj)
         self.update(data)
         with io.open(self.config, "w", encoding="utf-8") as fobj:
+            logging.warning("Saving %s", data)
             self.save(data, fobj)
 
     def update(self, data):
@@ -68,9 +70,8 @@ class ConfigContext:
             entry["sources"] = [
                 [
                     source.replace("${DIR}", str(self.workingpath))
-                    for source in entry_sources
+                    for source in entry["sources"][0]
                 ]
-                for entry_sources in entry["sources"]
             ]
 
 

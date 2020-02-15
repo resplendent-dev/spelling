@@ -8,6 +8,7 @@ from __future__ import absolute_import, division, print_function
 
 import io
 import logging
+import os
 import pathlib
 import sys
 
@@ -65,7 +66,7 @@ def run_invocation(  # pylint: disable=bad-continuation
             print("start", file=fobj)
         success = True
         if working_path is None:
-            working_path = pathlib.Path(".").resolve()
+            working_path = pathlib.Path(os.getcwd()).resolve()
         msg_iter = check_iter(
             display_context=display_context,
             display_summary=display_summary,
