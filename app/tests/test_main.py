@@ -168,11 +168,10 @@ def test_main_data(args, filedata, expected_result, expected_exit_code, config):
                 print(config, file=fobj)
             args.extend(["--config", configpath])
         os.chdir(path)
-        expected_result_fix = expected_result.replace("${DIR}", str(path))
         # Exercise
         result = runner.invoke(main, args)
     # Verify
-    assert result.output.strip() == expected_result_fix  # nosec # noqa=S101
+    assert result.output.strip() == expected_result  # nosec # noqa=S101
     assert result.exit_code == expected_exit_code  # nosec # noqa=S101
 
 
@@ -185,11 +184,11 @@ def test_main_repo_data(path, record):
     # Setup
     args = []
     runner = CliRunner()
-    datazippath = path / "data.zip"
     expected_result_path = path / "expected_result.txt"
     if not record or expected_result_path.exists():
         with io.open(str(expected_result_path), "r", encoding="utf-8") as fobj:
             expected_result = fobj.read().strip()
+            expected_result = expected_result.replace("${DIR}", str(path))
     else:
         expected_result = None
     expected_exit_code_path = path / "expected_exit_code.txt"
@@ -199,7 +198,7 @@ def test_main_repo_data(path, record):
     else:
         expected_exit_code = None
     with get_tmpdir() as extractpath:
-        with zipfile.ZipFile(str(datazippath)) as zipobj:
+        with zipfile.ZipFile(str(path / "data.zip")) as zipobj:
             zipobj.extractall(extractpath)
             # Exercise
             result = runner.invoke(main, args)
@@ -210,7 +209,9 @@ def test_main_repo_data(path, record):
         assert result_sorted_lines == expected_sorted_result  # nosec # noqa=S101
     else:
         with io.open(str(expected_result_path), "w", encoding="utf-8") as fobj:
-            fobj.write(result.output)
+            result_output = result.output
+            result_output = result_output.replace(str(path), "${DIR}")
+            fobj.write(result_output)
     if not record or expected_exit_code_path.exists():
         assert result.exit_code == expected_exit_code  # nosec # noqa=S101
     else:
