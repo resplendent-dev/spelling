@@ -22,6 +22,8 @@ matrix:
     lang: en
   dictionary:
     output: build/dictionary/restructured.dic
+    wordlist:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - resplendent.filters.restructuredtext:
   - pyspelling.filters.html:
@@ -54,12 +56,13 @@ matrix:
     - "!${DIR}**/HISTORY*"
     - "!${DIR}**/history*"
   hunspell:
-  hunspell:
     d: en_AU
   aspell:
     lang: en
   dictionary:
     output: build/dictionary/mkdocs.dic
+    wordlist:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.markdown:
   - pyspelling.filters.html:
@@ -87,6 +90,8 @@ matrix:
     lang: en
   dictionary:
     output: build/dictionary/python.dic
+    wordlist:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.python:
       group_comments: true

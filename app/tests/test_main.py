@@ -114,7 +114,7 @@ def get_test_data_path():
             ["--display-context", "--no-display-summary"],
             BADDATA,
             "Misspelled words:\n"
-            "<text> test.rst: html>body>div>p\n"
+            "<text> ${DIR}/test.rst: html>body>div>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "boguz\n"
@@ -128,7 +128,7 @@ def get_test_data_path():
             [],
             BADMARKDOWN,
             "Misspelled words:\n"
-            "<text> test.md: html>body>p\n"
+            "<text> ${DIR}/test.md: html>body>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "wordishes\n"
@@ -136,7 +136,7 @@ def get_test_data_path():
             "------------------------------------------\n"
             "\n"
             "Misspelled words:\n"
-            "<text> test.md: html>body>p\n"
+            "<text> ${DIR}/test.md: html>body>p\n"
             "--------------------------------------"
             "------------------------------------------\n"
             "thuj\n"
@@ -158,6 +158,7 @@ def test_main_data(args, filedata, expected_result, expected_exit_code, config):
     # Setup
     runner = CliRunner()
     with get_tmpdir() as path:
+        expected_result = expected_result.replace("${DIR}", str(path))
         for filename, content in filedata.items():
             filepath = os.path.join(path, filename)
             with io.open(filepath, "w", encoding="utf-8") as fobj:
