@@ -1,84 +1,84 @@
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>p
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>p
 --------------------------------------------------------------------------------
 CookieCutter
 cookiecutter
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>h1
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>h1
 --------------------------------------------------------------------------------
 Cookiecutter
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 pylint
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 isort
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 towncrier
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 dlint
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 pytest
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 pytest
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 pytest
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 pytest
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 PyPI
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 PyPI
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 ReadTheDocs
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> COOKIECUTTER_UPDATES.md: html>body>ul>li
+<text> ${DIR}/COOKIECUTTER_UPDATES.md: html>body>ul>li
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------

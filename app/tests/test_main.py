@@ -168,10 +168,11 @@ def test_main_data(args, filedata, expected_result, expected_exit_code, config):
                 print(config, file=fobj)
             args.extend(["--config", configpath])
         os.chdir(path)
+        expected_result_fix = expected_result.replace("${DIR}", str(path))
         # Exercise
         result = runner.invoke(main, args)
     # Verify
-    assert result.output.strip() == expected_result  # nosec # noqa=S101
+    assert result.output.strip() == expected_result_fix  # nosec # noqa=S101
     assert result.exit_code == expected_exit_code  # nosec # noqa=S101
 
 
