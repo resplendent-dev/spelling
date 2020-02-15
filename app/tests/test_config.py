@@ -19,4 +19,4 @@ def test_path_update():
         # Verify
         with io.open(ctxt.config, "r", encoding="utf-8") as fobj:
             data = fobj.read()
-        assert str(workingpath) in data
+        assert str(workingpath) in data  # nosec # noqa=S101
