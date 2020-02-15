@@ -4,7 +4,6 @@ nonwords dictionary and the custom exclusions.
 """
 
 import io
-import logging
 import pathlib
 import shutil
 import tempfile
@@ -13,6 +12,7 @@ from contextlib import contextmanager
 import pkg_resources
 import yaml
 from unanimous.store import get_current_non_words
+from wcmatch import glob
 
 
 class ConfigContext:
@@ -57,16 +57,23 @@ class ConfigContext:
                 print(nonword, file=fobj)
         self.update(data)
         with io.open(self.config, "w", encoding="utf-8") as fobj:
-            logging.warning("Saving %s", data)
             self.save(data, fobj)
 
     def update(self, data):
         """
         Reconfigure the loaded yaml data as required
         """
-        wordlists = [str(self.wordlist)]
         for entry in data["matrix"]:
-            entry["dictionary"].setdefault("wordlists", []).extend(wordlists)
+            wordlists = entry["dictionary"].get("wordlists", [])
+            updated = [str(self.wordlist)]
+            for wordlist in wordlists:
+                wordlist = wordlist.replace("${DIR}", str(self.workingpath))
+                wordlist_iglob = glob.iglob(
+                    wordlist, flags=glob.N | glob.B | glob.G | glob.S | glob.O
+                )
+                matches = list(wordlist_iglob)
+                updated.extend(matches)
+            entry["dictionary"]["wordlists"] = updated
             entry["sources"] = [
                 [
                     source.replace("${DIR}", str(self.workingpath))
