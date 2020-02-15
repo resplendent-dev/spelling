@@ -62,8 +62,6 @@ def run_invocation(  # pylint: disable=bad-continuation
     """
     logging.basicConfig()
     try:
-        with io.open("/home/tgates/out.txt", "w", encoding="utf-8") as fobj:
-            print("start", file=fobj)
         success = True
         if working_path is None:
             working_path = pathlib.Path(os.getcwd()).resolve()
