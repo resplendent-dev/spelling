@@ -38,7 +38,8 @@ matrix:
 - name: restructedtext
   expect_match: false
   sources:
-  - "**/*.rst"
+  -
+    - "**/*.rst"
   hunspell:
     d: en_AU
   aspell:
@@ -56,7 +57,8 @@ matrix:
 - name: restructedtext
   expect_match: false
   sources:
-  - "**/*.rst"
+  -
+    - "**/*.rst"
   hunspell:
     d: en_AU
   aspell:
