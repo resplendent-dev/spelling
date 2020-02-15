@@ -6,7 +6,6 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
-import io
 import logging
 import os
 import pathlib
