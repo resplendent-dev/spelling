@@ -22,7 +22,7 @@ matrix:
     lang: en
   dictionary:
     output: build/dictionary/restructured.dic
-    wordlist:
+    wordlists:
     - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - resplendent.filters.restructuredtext:
@@ -61,7 +61,7 @@ matrix:
     lang: en
   dictionary:
     output: build/dictionary/mkdocs.dic
-    wordlist:
+    wordlists:
     - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.markdown:
@@ -90,7 +90,7 @@ matrix:
     lang: en
   dictionary:
     output: build/dictionary/python.dic
-    wordlist:
+    wordlists:
     - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.python:
