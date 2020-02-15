@@ -5,23 +5,25 @@ matrix:
   expect_match: false
   sources:
   -
-    - "**/*.rst"
-    - "!**/CHANGE*"
-    - "!**/change*"
-    - "!**/RELEASE*"
-    - "!**/release*"
-    - "!**/ANNOUNCE*"
-    - "!**/announce*"
-    - "!**/NEWS*"
-    - "!**/news*"
-    - "!**/HISTORY*"
-    - "!**/history*"
+    - "${DIR}/**/*.rst"
+    - "!${DIR}/**/CHANGE*"
+    - "!${DIR}/**/change*"
+    - "!${DIR}/**/RELEASE*"
+    - "!${DIR}/**/release*"
+    - "!${DIR}/**/ANNOUNCE*"
+    - "!${DIR}/**/announce*"
+    - "!${DIR}/**/NEWS*"
+    - "!${DIR}/**/news*"
+    - "!${DIR}**/HISTORY*"
+    - "!${DIR}**/history*"
   hunspell:
     d: en_AU
   aspell:
     lang: en
   dictionary:
     output: build/dictionary/restructured.dic
+    wordlists:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - resplendent.filters.restructuredtext:
   - pyspelling.filters.html:
@@ -36,30 +38,31 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"
 
 - name: markdown
   expect_match: false
   sources:
   -
-    - "**/*.md"
-    - "!**/CHANGE*"
-    - "!**/change*"
-    - "!**/RELEASE*"
-    - "!**/release*"
-    - "!**/ANNOUNCE*"
-    - "!**/announce*"
-    - "!**/NEWS*"
-    - "!**/news*"
-    - "!**/HISTORY*"
-    - "!**/history*"
-  hunspell:
+    - "${DIR}/**/*.md"
+    - "!${DIR}/**/CHANGE*"
+    - "!${DIR}/**/change*"
+    - "!${DIR}/**/RELEASE*"
+    - "!${DIR}/**/release*"
+    - "!${DIR}/**/ANNOUNCE*"
+    - "!${DIR}/**/announce*"
+    - "!${DIR}/**/NEWS*"
+    - "!${DIR}/**/news*"
+    - "!${DIR}**/HISTORY*"
+    - "!${DIR}**/history*"
   hunspell:
     d: en_AU
   aspell:
     lang: en
   dictionary:
     output: build/dictionary/mkdocs.dic
+    wordlists:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.markdown:
   - pyspelling.filters.html:
@@ -74,18 +77,21 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"
 
 - name: python
   expect_match: false
   sources:
-  - "**/*.py"
+  -
+    - "${DIR}/**/*.py"
   hunspell:
     d: en_AU
   aspell:
     lang: en
   dictionary:
     output: build/dictionary/python.dic
+    wordlists:
+    - "${DIR}/**/spelling_wordlist.txt"
   pipeline:
   - pyspelling.filters.python:
       group_comments: true
@@ -118,4 +124,4 @@ matrix:
   - unanimous.filters.nonwords:
       too_short: 3
       wordlist:
-      - "**/spelling_wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"

@@ -1,26 +1,26 @@
 Misspelled words:
-<text> README.md: html>body>h1
+<text> ${DIR}/README.md: html>body>h1
 --------------------------------------------------------------------------------
 erros
 wath
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> README.md: html>body>p
+<text> ${DIR}/README.md: html>body>p
 --------------------------------------------------------------------------------
 erray
 spellarish
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> folder/README.md: html>body>h1
+<text> ${DIR}/folder/README.md: html>body>h1
 --------------------------------------------------------------------------------
 erros
 wath
 --------------------------------------------------------------------------------
 
 Misspelled words:
-<text> folder/README.md: html>body>p
+<text> ${DIR}/folder/README.md: html>body>p
 --------------------------------------------------------------------------------
 erray
 spellarish
