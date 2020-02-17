@@ -3,18 +3,14 @@ spellchecker: aspell
 matrix:
 - name: restructedtext
   expect_match: false
+  glob_flags: "I|N|B|G"
   sources:
   -
     - "${DIR}/**/*.rst"
-    - "!${DIR}/**/CHANGE*"
     - "!${DIR}/**/change*"
-    - "!${DIR}/**/RELEASE*"
     - "!${DIR}/**/release*"
-    - "!${DIR}/**/ANNOUNCE*"
     - "!${DIR}/**/announce*"
-    - "!${DIR}/**/NEWS*"
     - "!${DIR}/**/news*"
-    - "!${DIR}**/HISTORY*"
     - "!${DIR}**/history*"
   hunspell:
     d: en_AU
@@ -42,18 +38,14 @@ matrix:
 
 - name: markdown
   expect_match: false
+  glob_flags: "I|N|B|G"
   sources:
   -
     - "${DIR}/**/*.md"
-    - "!${DIR}/**/CHANGE*"
     - "!${DIR}/**/change*"
-    - "!${DIR}/**/RELEASE*"
     - "!${DIR}/**/release*"
-    - "!${DIR}/**/ANNOUNCE*"
     - "!${DIR}/**/announce*"
-    - "!${DIR}/**/NEWS*"
     - "!${DIR}/**/news*"
-    - "!${DIR}**/HISTORY*"
     - "!${DIR}**/history*"
   hunspell:
     d: en_AU
