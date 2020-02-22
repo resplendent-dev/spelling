@@ -33,6 +33,14 @@ def check_iter(display_context, display_summary, config, storage_path, workingpa
     Execute the invocation
     """
     all_results = run_spell_check(config, storage_path, workingpath)
+    yield from process_results(all_results, display_context, display_summary)
+
+
+def process_results(all_results, display_context, display_summary):
+    """
+    Work through the results yielding the words in a human readable
+    output.
+    """
     fail = False
     misspelt = set()
     for results in all_results:
