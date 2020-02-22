@@ -38,7 +38,7 @@ def check_iter(display_context, display_summary, config, storage_path, workingpa
 
 def process_results(all_results, display_context, display_summary):
     """
-    Work through the results yielding the misspelt words in a human readable
+    Work through the results yielding the words in a human readable
     output.
     """
     fail = False
