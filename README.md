@@ -30,7 +30,7 @@ Note: if using Python 3.4 the latest version of lxml only supports python 3.5 an
 
 
 ## Prerequisites:
-- dataset
+- dataset<1.2.0
 - pyspelling
 - wcmatch<5.0
 - resplendent
