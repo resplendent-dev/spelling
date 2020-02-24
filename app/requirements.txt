@@ -2,5 +2,5 @@ dataset
 pyspelling
 wcmatch<5.0
 resplendent
-unanimous>=0.5.2
+unanimous>=0.6.4
 PyYAML
