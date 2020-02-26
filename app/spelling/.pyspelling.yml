@@ -12,7 +12,8 @@ matrix:
     - "!${DIR}/**/announce*"
     - "!${DIR}/**/news*"
     - "!${DIR}/**/history*"
-    - "!${DIR}/**/authors*"
+    - "!${DIR}/**/author*"
+    - "!${DIR}/**/contrib*"
   hunspell:
     d: en_AU
   aspell:
@@ -50,7 +51,8 @@ matrix:
     - "!${DIR}/**/announce*"
     - "!${DIR}/**/news*"
     - "!${DIR}/**/history*"
-    - "!${DIR}/**/authors*"
+    - "!${DIR}/**/author*"
+    - "!${DIR}/**/contrib*"
   hunspell:
     d: en_AU
   aspell:
