@@ -1,12 +1,10 @@
 Misspelled words:
-<text> ${DIR}/test.js (1)
+<text> ${DIR}/sample.cpp (1)
 --------------------------------------------------------------------------------
-errarto
-filarish
-spellarimisk
+makstakes
+sampol
 --------------------------------------------------------------------------------
 
 !!!Spelling check failed!!!
-errarto
-filarish
-spellarimisk
+makstakes
+sampol
