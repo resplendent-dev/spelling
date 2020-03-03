@@ -127,3 +127,42 @@ matrix:
       wordlists:
       - "${DIR}/**/wordlist.txt"
       - "${DIR}/**/spelling_wordlist.txt"
+
+- name: javascript
+  expect_match: false
+  sources:
+  -
+    - "${DIR}/**/*.js"
+  hunspell:
+    d: en_AU
+  aspell:
+    lang: en
+  dictionary:
+    output: build/dictionary/python.dic
+    wordlists:
+    - "${DIR}/**/wordlist.txt"
+    - "${DIR}/**/spelling_wordlist.txt"
+  pipeline:
+  - pyspelling.filters.javascript:
+      jsdocs: true
+      line_comments: true
+      block_comments: true
+  - pyspelling.filters.context:
+      context_visible_first: true
+      escapes: '\\[\\`]'
+      delimiters:
+      # Ignore multiline content between fences (fences can have 3 or more back ticks)
+      # ```
+      # content
+      # ```
+      - open: '(?s)^(?P<open> *`{3,})$'
+        close: '^(?P=open)$'
+      # Ignore text between inline back ticks
+      - open: '(?P<open>`+)'
+        close: '(?P=open)'
+  - pyspelling.filters.url:
+  - unanimous.filters.nonwords:
+      too_short: 3
+      wordlists:
+      - "${DIR}/**/wordlist.txt"
+      - "${DIR}/**/spelling_wordlist.txt"
