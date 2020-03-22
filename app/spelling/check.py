@@ -3,10 +3,10 @@ Main invocation for spelling check
 """
 from __future__ import absolute_import, division, print_function
 
+import json
 import os
 import pathlib
 
-import json
 import pyspelling
 
 from spelling.config import get_config_context_manager
