@@ -105,6 +105,7 @@ def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
         print("Spelling check passed :)")
     except Exception:
         logging.exception("Error during processing.")
+        sys.exit(2)
         raise
 
 
