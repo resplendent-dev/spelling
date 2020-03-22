@@ -13,7 +13,9 @@ from spelling.config import get_config_context_manager
 from spelling.store import get_store
 
 
-def check(display_context, display_summary, config, storage_path, fobj, jsonfobj=None):
+def check(  # pylint: disable=too-many-arguments
+    display_context, display_summary, config, storage_path, fobj, jsonfobj=None
+):
     """
     Execute the invocation
     """
@@ -35,7 +37,7 @@ def check(display_context, display_summary, config, storage_path, fobj, jsonfobj
     return success
 
 
-def check_iter(
+def check_iter(  # pylint: disable=too-many-arguments
     display_context, display_summary, config, storage_path, workingpath, jsonfobj=None
 ):
     """
