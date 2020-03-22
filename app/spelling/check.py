@@ -45,6 +45,7 @@ def check_iter(  # pylint: disable=too-many-arguments
     """
     all_results = run_spell_check(config, storage_path, workingpath)
     if jsonfobj is not None:
+        all_results = list(all_results)
         json.dump(results_to_json(all_results), jsonfobj)
     yield from process_results(all_results, display_context, display_summary)
 
