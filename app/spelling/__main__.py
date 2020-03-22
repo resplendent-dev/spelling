@@ -106,6 +106,7 @@ def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
     except Exception:
         logging.exception("Error during processing.")
         sys.exit(2)
+        raise
 
 
 if __name__ == "__main__":
