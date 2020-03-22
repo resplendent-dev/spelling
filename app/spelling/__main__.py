@@ -6,6 +6,7 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
+import io
 import logging
 import os
 import pathlib
@@ -27,8 +28,15 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option("--config", default=None)
 @click.option("--storage-path", default=None)
 @click.option("--working-path", default=None)
+@click.option("--json-path", default=None)
 def main(  # pylint: disable=too-many-arguments,bad-continuation
-    ctxt, display_context, display_summary, config, storage_path, working_path
+    ctxt,
+    display_context,
+    display_summary,
+    config,
+    storage_path,
+    working_path,
+    json_path,
 ):
     """
     Used to conveniently invoke spell checking with sensible defaults and
@@ -36,7 +44,12 @@ def main(  # pylint: disable=too-many-arguments,bad-continuation
     """
     if ctxt.invoked_subcommand is None:
         run_invocation(
-            display_context, display_summary, config, storage_path, working_path
+            display_context,
+            display_summary,
+            config,
+            storage_path,
+            working_path,
+            json_path,
         )
 
 
@@ -46,15 +59,20 @@ def main(  # pylint: disable=too-many-arguments,bad-continuation
 @click.option("--config", default=None)
 @click.option("--storage-path", default=None)
 @click.option("--working-path", default=None)
-def invoke(display_context, display_summary, config, storage_path, working_path):
+@click.option("--json-path", default=None)
+def invoke(  # pylint: disable=bad-continuation,too-many-arguments
+    display_context, display_summary, config, storage_path, working_path, json_path
+):
     """
     Invoke the spell checker
     """
-    run_invocation(display_context, display_summary, config, storage_path, working_path)
+    run_invocation(
+        display_context, display_summary, config, storage_path, working_path, json_path
+    )
 
 
-def run_invocation(  # pylint: disable=bad-continuation
-    display_context, display_summary, config, storage_path, working_path
+def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
+    display_context, display_summary, config, storage_path, working_path, json_path
 ):
     """
     Call spell checker
@@ -64,16 +82,24 @@ def run_invocation(  # pylint: disable=bad-continuation
         success = True
         if working_path is None:
             working_path = pathlib.Path(os.getcwd()).resolve()
-        msg_iter = check_iter(
-            display_context=display_context,
-            display_summary=display_summary,
-            config=config,
-            storage_path=storage_path,
-            workingpath=working_path,
-        )
-        for msg in msg_iter:
-            print(msg)
-            success = False
+        jsonfobj = None
+        if json_path:
+            jsonfobj = io.open(json_path, "w", encoding="utf-8")
+        try:
+            msg_iter = check_iter(
+                display_context=display_context,
+                display_summary=display_summary,
+                config=config,
+                storage_path=storage_path,
+                workingpath=working_path,
+                jsonfobj=jsonfobj,
+            )
+            for msg in msg_iter:
+                print(msg)
+                success = False
+        finally:
+            if jsonfobj is not None:
+                jsonfobj.close()
         if not success:
             sys.exit(1)
         print("Spelling check passed :)")
