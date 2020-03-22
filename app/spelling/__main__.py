@@ -13,6 +13,7 @@ import pathlib
 import sys
 
 import click
+
 from spelling.check import check_iter
 from spelling.version import __version__
 
