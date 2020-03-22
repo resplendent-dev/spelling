@@ -20,7 +20,11 @@ def check(display_context, display_summary, config, storage_path, fobj, jsonfobj
     workingpath = pathlib.Path(".").resolve()
     success = True
     check_iter_output = check_iter(
-        display_context, display_summary, config, storage_path, workingpath,
+        display_context,
+        display_summary,
+        config,
+        storage_path,
+        workingpath,
         jsonfobj=jsonfobj,
     )
     for output in check_iter_output:
