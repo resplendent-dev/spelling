@@ -1,0 +1,8 @@
+Misspelled words:
+<text> ${DIR}/CONTRIBUTING.md: html>body>p
+--------------------------------------------------------------------------------
+explainifies
+--------------------------------------------------------------------------------
+
+!!!Spelling check failed!!!
+explainifies
