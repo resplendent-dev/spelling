@@ -25,16 +25,16 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.pass_context
 @click.option("--display-context/--no-display-context", default=True)
 @click.option("--display-summary/--no-display-summary", default=True)
+@click.option("--display-help/--no-display-help", default=True)
 @click.option("--config", default=None)
-@click.option("--storage-path", default=None)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
 def main(  # pylint: disable=too-many-arguments,bad-continuation
     ctxt,
     display_context,
     display_summary,
+    display_help,
     config,
-    storage_path,
     working_path,
     json_path,
 ):
@@ -46,8 +46,8 @@ def main(  # pylint: disable=too-many-arguments,bad-continuation
         run_invocation(
             display_context,
             display_summary,
+            display_help,
             config,
-            storage_path,
             working_path,
             json_path,
         )
@@ -56,23 +56,23 @@ def main(  # pylint: disable=too-many-arguments,bad-continuation
 @main.command()
 @click.option("--display-context/--no-display-context", default=True)
 @click.option("--display-summary/--no-display-summary", default=True)
+@click.option("--display-help/--no-display-help", default=True)
 @click.option("--config", default=None)
-@click.option("--storage-path", default=None)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
 def invoke(  # pylint: disable=bad-continuation,too-many-arguments
-    display_context, display_summary, config, storage_path, working_path, json_path
+    display_context, display_summary, display_help, config, working_path, json_path
 ):
     """
     Invoke the spell checker
     """
     run_invocation(
-        display_context, display_summary, config, storage_path, working_path, json_path
+        display_context, display_summary, display_help, config, working_path, json_path
     )
 
 
 def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
-    display_context, display_summary, config, storage_path, working_path, json_path
+    display_context, display_summary, display_help, config, working_path, json_path
 ):
     """
     Call spell checker
@@ -89,8 +89,8 @@ def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
             msg_iter = check_iter(
                 display_context=display_context,
                 display_summary=display_summary,
+                display_help=display_help,
                 config=config,
-                storage_path=storage_path,
                 workingpath=working_path,
                 jsonfobj=jsonfobj,
             )

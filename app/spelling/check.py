@@ -10,11 +10,10 @@ import pathlib
 import pyspelling
 
 from spelling.config import get_config_context_manager
-from spelling.store import get_store
 
 
 def check(  # pylint: disable=too-many-arguments
-    display_context, display_summary, config, storage_path, fobj, jsonfobj=None
+    display_context, display_summary, display_help, config, fobj, jsonfobj=None
 ):
     """
     Execute the invocation
@@ -24,8 +23,8 @@ def check(  # pylint: disable=too-many-arguments
     check_iter_output = check_iter(
         display_context,
         display_summary,
+        display_help,
         config,
-        storage_path,
         workingpath,
         jsonfobj=jsonfobj,
     )
@@ -38,16 +37,18 @@ def check(  # pylint: disable=too-many-arguments
 
 
 def check_iter(  # pylint: disable=too-many-arguments
-    display_context, display_summary, config, storage_path, workingpath, jsonfobj=None
+    display_context, display_summary, display_help, config, workingpath, jsonfobj=None
 ):
     """
     Execute the invocation
     """
-    all_results = run_spell_check(config, storage_path, workingpath)
+    all_results, custom_wordlists = run_spell_check(config, workingpath)
     if jsonfobj is not None:
         all_results = list(all_results)
         json.dump(results_to_json(all_results), jsonfobj)
-    yield from process_results(all_results, display_context, display_summary)
+    yield from process_results(
+        all_results, custom_wordlists, display_context, display_summary, display_help
+    )
 
 
 def results_to_json(all_results):
@@ -84,7 +85,9 @@ def context_to_filename(name):
     raise Exception(f"Unable to get filepath for {name}")
 
 
-def process_results(all_results, display_context, display_summary):
+def process_results(
+    all_results, custom_wordlists, display_context, display_summary, display_help
+):
     """
     Work through the results yielding the words in a human readable
     output.
@@ -110,9 +113,29 @@ def process_results(all_results, display_context, display_summary):
         yield "!!!Spelling check failed!!!"
         if display_summary:
             yield "\n".join(sorted(misspelt))
+        if display_help:
+            yield """
+If the spelling checker reports a spelling mistake which is actually a
+deliberate choice an exemption can be made in a few ways:
+
+* Words containing uppercase characters are assumed to be proper nouns and
+  ignored.
+* Escaping can be achieved through the use of back ticks ` around the word.
+* Adding to a custom wordlist wordlist.txt or spelling_wordlist.txt found in any
+  sub-directory.
+* Adding to the global wordlist https://github.com/resplendent-dev/unanimous
+"""
+            if custom_wordlists:
+                custom_wordlists_lines = "\n".join(
+                    [f"* {wordlist}" for wordlist in custom_wordlists]
+                )
+                yield f"""
+Note: The following existing custom wordlists were found in this project:
+{custom_wordlists_lines}
+"""
 
 
-def run_spell_check(config, storage_path, workingpath):
+def run_spell_check(config, workingpath):
     """
     Perform the spell check and keep a record of spelling mistakes.
     """
@@ -128,13 +151,7 @@ def run_spell_check(config, storage_path, workingpath):
                 debug=False,
             )
         )
-    storage = get_store(storage_path)
-    wordcount = storage.load_word_count()
-    for results in all_results:
-        for word in results.words:
-            wordcount[word] = wordcount.get(word, 0) + 1
-    storage.save_word_count(wordcount)
-    return all_results
+        return all_results, ctxt.custom_wordlists
 
 
 # vim: set ft=python:

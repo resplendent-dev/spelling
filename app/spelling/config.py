@@ -27,6 +27,7 @@ class ConfigContext:
         self.workingpath = workingpath
         self.config = tmppath / ".pyspelling"
         self.wordlist = tmppath / "wordlist.txt"
+        self.custom_wordlists = []
         self.init()
 
     @staticmethod
@@ -65,14 +66,11 @@ class ConfigContext:
         """
         for entry in data["matrix"]:
             wordlists = entry["dictionary"].get("wordlists", [])
-            updated = [str(self.wordlist)]
-            for wordlist in wordlists:
-                wordlist = wordlist.replace("${DIR}", str(self.workingpath))
-                wordlist_iglob = glob.iglob(
-                    wordlist, flags=glob.N | glob.B | glob.G | glob.S | glob.O
-                )
-                matches = list(wordlist_iglob)
-                updated.extend(matches)
+            self.custom_wordlists.extend(self.get_custom_wordlists(wordlists))
+            break
+        for entry in data["matrix"]:
+            updated = list(self.custom_wordlists)
+            updated.append(str(self.wordlist))
             entry["dictionary"]["wordlists"] = updated
             entry["sources"] = [
                 [
@@ -80,6 +78,20 @@ class ConfigContext:
                     for source in entry["sources"][0]
                 ]
             ]
+
+    def get_custom_wordlists(self, wordlists):
+        """
+        Scan for existing custom wordlists
+        """
+        updated = []
+        for wordlist in wordlists:
+            wordlist = wordlist.replace("${DIR}", str(self.workingpath))
+            wordlist_iglob = glob.iglob(
+                wordlist, flags=glob.N | glob.B | glob.G | glob.S | glob.O
+            )
+            matches = list(wordlist_iglob)
+            updated.extend(matches)
+        return updated
 
 
 @contextmanager
