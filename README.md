@@ -17,12 +17,12 @@ More details can be found in the
 
 # Exemptions
 
-If the spelling checker reports a spelling mistake which is actually a deliberate choice an exemption 
-can be made in few ways:
+If the spelling checker reports a spelling mistake which is actually a
+deliberate choice an exemption can be made in a few ways:
 
 * Words containing uppercase characters are assumed to be proper nouns and ignored.
 * Escaping can be achieved through the use of back ticks \` around the word.
-* Adding to a custom wordlist spelling_wordlist.txt found in any sub-directory.
+* Adding to a custom wordlist wordlist.txt or spelling\_wordlist.txt found in any sub-directory.
 * Adding to the global wordlist https://github.com/resplendent-dev/unanimous
 
 # Installation

@@ -87,7 +87,7 @@ def get_test_data_path():
     [
         ([], {}, "Spelling check passed :)", 0, None),
         (
-            [],
+            ["--no-display-help"],
             BADDATA,
             "ERROR: test.rst -- Failure during filtering\n"
             "!!!Spelling check failed!!!",
@@ -95,7 +95,7 @@ def get_test_data_path():
             BADCONFIG,
         ),
         (
-            [],
+            ["--no-display-help"],
             BADDATA,
             "ERROR: test.rst -- Failure during filtering\n"
             "!!!Spelling check failed!!!",
@@ -106,14 +106,14 @@ def get_test_data_path():
         (["--display-context"], {}, "Spelling check passed :)", 0, None),
         (["--no-display-context"], {}, "Spelling check passed :)", 0, None),
         (
-            ["--no-display-context", "--display-summary"],
+            ["--no-display-help", "--no-display-context", "--display-summary"],
             BADDATA,
             "!!!Spelling check failed!!!\nboguz",
             1,
             None,
         ),
         (
-            ["--display-context", "--no-display-summary"],
+            ["--no-display-help", "--display-context", "--no-display-summary"],
             BADDATA,
             "Misspelled words:\n"
             "<text> ${DIR}/test.rst: html>body>div>p\n"
@@ -146,7 +146,21 @@ def get_test_data_path():
             "------------------------------------------\n"
             "\n!!!Spelling check failed!!!\n"
             "thuj\n"
-            "wordishes",
+            "wordishes\n\n"
+            "If the spelling checker reports a spelling"
+            " mistake which is actually a\n"
+            "deliberate choice an exemption can be made"
+            " in a few ways:\n\n"
+            "* Words containing uppercase characters are"
+            " assumed to be proper nouns and\n"
+            "  ignored.\n"
+            "* Escaping can be achieved through the use"
+            " of back ticks ` around the word.\n"
+            "* Adding to a custom wordlist wordlist.txt"
+            " or spelling_wordlist.txt found in any\n"
+            "  sub-directory.\n"
+            "* Adding to the global wordlist"
+            " https://github.com/resplendent-dev/unanimous",
             1,
             None,
         ),
