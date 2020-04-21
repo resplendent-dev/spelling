@@ -15,6 +15,7 @@ import sys
 import click
 
 from spelling.check import check_iter
+from spelling.dependencies import ensure_dependencies
 from spelling.version import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
@@ -79,6 +80,7 @@ def run_invocation(  # pylint: disable=bad-continuation,too-many-arguments
     """
     logging.basicConfig()
     try:
+        ensure_dependencies()
         success = True
         if working_path is None:
             working_path = pathlib.Path(os.getcwd()).resolve()
