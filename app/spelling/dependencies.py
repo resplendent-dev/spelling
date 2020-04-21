@@ -2,6 +2,7 @@
 Make sure aspell is installed.
 """
 
+import os
 import subprocess  # noqa=S404
 import sys
 
@@ -21,43 +22,25 @@ HANDLERS = {
             "aspell-en",
         ],
     ],
-    "arch": [
-        [
-            "sudo",
-            "--non-interactive",
-            "pacman",
-            "-S",
-            "aspell",
-            "aspell-en",
-        ],
-    ],
+    "arch": [["sudo", "--non-interactive", "pacman", "-S", "aspell", "aspell-en"]],
     "rhel": [
-        [
-            "sudo",
-            "--non-interactive",
-            "yum",
-            "install",
-            "epel-release",
-        ],
-        [
-            "sudo",
-            "--non-interactive",
-            "yum",
-            "install",
-            "aspell",
-            "aspell-en",
-        ],
+        ["sudo", "--non-interactive", "yum", "install", "epel-release"],
+        ["sudo", "--non-interactive", "yum", "install", "aspell", "aspell-en"],
     ],
-    "fedora": [
-        [
-            "sudo",
-            "--non-interactive",
-            "dnf",
-            "install",
-            "aspell",
-            "aspell-en",
-        ],
-    ]
+    "fedora": [["sudo", "--non-interactive", "dnf", "install", "aspell", "aspell-en"]],
+}
+
+CI_ENVS = {
+    "CI",
+    "APPVEYOR",
+    "TF_BUILD",
+    "CIRCLECI",
+    "CI_SERVER",
+    "GITLAB_CI",
+    "CONTINUOUS_INTEGRATION",
+    "TRAVIS",
+    "IS_CI",
+    "IN_CI",
 }
 
 
@@ -67,6 +50,14 @@ def ensure_dependencies():
     """
     if which("aspell") is not None:
         return
+    if not is_in_ci():
+        print(
+            "aspell and aspell-en need to be installed. "
+            " Environment does not appear to be inside a"
+            " CI system so timidly refusing to continue.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
     distro_id = distro.id()
     distro_like = distro.like()
     try:
@@ -85,6 +76,13 @@ def ensure_dependencies():
     else:
         for cmdargs in handler:
             subprocess.call(cmdargs)  # noqa=S603
+
+
+def is_in_ci():
+    """
+    Check common CI environment variables
+    """
+    return bool(CI_ENVS.intersection(os.environ.keys()))
 
 
 if __name__ == "__main__":
