@@ -1,3 +1,5 @@
+whichcraft
+distro
 dataset<1.2.0
 pyspelling
 wcmatch<5.0

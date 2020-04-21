@@ -10,4 +10,6 @@ git checkout -- \
  app/spelling \
  app/tests \
  app/data \
- app/conftest.py
+ app/conftest.py \
+ README.md \
+ docs/index.rst
