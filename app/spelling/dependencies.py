@@ -3,7 +3,7 @@ Make sure aspell is installed.
 """
 
 import os
-import subprocess  # noqa=S404
+import subprocess  # noqa=S404 # nosec
 import sys
 
 import distro
@@ -75,7 +75,7 @@ def ensure_dependencies():
         sys.exit(1)
     else:
         for cmdargs in handler:
-            subprocess.call(cmdargs)  # noqa=S603
+            subprocess.call(cmdargs)  # noqa=S603 # nosec
 
 
 def is_in_ci():
