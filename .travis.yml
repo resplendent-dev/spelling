@@ -3,7 +3,7 @@ language: bash
 services:
   - docker
 
-script: bash ci.sh
+script: bash travis.sh
 
 env:
   - DOCKER_COMPOSE_VERSION=1.24.1
