@@ -53,11 +53,11 @@ class ConfigContext:
         """
         data = self.load(self.origconfig)
         nonwords = get_current_non_words()
-        with io.open(self.wordlist, "w", encoding="utf-8") as fobj:
+        with io.open(str(self.wordlist), "w", encoding="utf-8") as fobj:
             for nonword in nonwords:
                 print(nonword, file=fobj)
         self.update(data)
-        with io.open(self.config, "w", encoding="utf-8") as fobj:
+        with io.open(str(self.config), "w", encoding="utf-8") as fobj:
             self.save(data, fobj)
 
     def update(self, data):
