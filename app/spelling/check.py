@@ -142,7 +142,7 @@ def run_spell_check(config, workingpath):
     with get_config_context_manager(workingpath, config) as ctxt:
         all_results = list(
             pyspelling.spellcheck(
-                ctxt.config,
+                str(ctxt.config),
                 names=[],
                 groups=[],
                 binary="",
