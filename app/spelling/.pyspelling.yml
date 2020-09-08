@@ -133,6 +133,7 @@ matrix:
   sources:
   -
     - "${DIR}/**/*.js"
+    - "!${DIR}/**/lib/**/*.js"
   hunspell:
     d: en_AU
   aspell:
