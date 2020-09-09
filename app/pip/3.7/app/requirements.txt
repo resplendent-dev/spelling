@@ -2,7 +2,7 @@ whichcraft
 distro
 dataset<1.2.0
 pyspelling
-wcmatch<5.0
+wcmatch
 resplendent
 unanimous>=0.6.4
 PyYAML
