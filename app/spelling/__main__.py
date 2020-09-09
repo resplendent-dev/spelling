@@ -30,7 +30,7 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option("--config", default=None)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
-def main(  # pylint: disable=too-many-arguments,bad-continuation,bad-option-value
+def main(  # pylint: disable=too-many-arguments
     ctxt,
     display_context,
     display_summary,
@@ -61,7 +61,7 @@ def main(  # pylint: disable=too-many-arguments,bad-continuation,bad-option-valu
 @click.option("--config", default=None)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
-def invoke(  # pylint: disable=bad-continuation,too-many-arguments,bad-option-value
+def invoke(  # pylint: disable=too-many-arguments
     display_context, display_summary, display_help, config, working_path, json_path
 ):
     """
@@ -72,7 +72,7 @@ def invoke(  # pylint: disable=bad-continuation,too-many-arguments,bad-option-va
     )
 
 
-def run_invocation(  # noqa  # pylint: disable=bad-continuation,too-many-arguments,bad-option-value
+def run_invocation(  # pylint: disable=too-many-arguments
     display_context, display_summary, display_help, config, working_path, json_path
 ):
     """
