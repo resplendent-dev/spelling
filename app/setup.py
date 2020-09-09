@@ -94,5 +94,4 @@ setup(
         if elem
     ],
     package_data={"spelling": [".pyspelling.yml"]},
-    entry_points={"console_scripts": ["spelling=spelling.__main__:main",]},
 )
