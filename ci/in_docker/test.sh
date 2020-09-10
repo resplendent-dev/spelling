@@ -11,14 +11,14 @@ source "${BASEDIR}/ci/in_docker/prepare.sh"
 cd "${BASEDIR}"
 find . -iname \*.sh -print0 | xargs -0 shellcheck
 
-cd "${BASEDIR}/app"
-
 # Version independant checks
 LATESTPYVER=3.8
 PYVER="${LATESTPYVER}"
-
 # Run spelling in root to check docs
 "python${PYVER}" -m spelling
+
+# Run in app for python checks
+cd "${BASEDIR}/app"
 # Run black to check all python on 3.8 only
 "python${PYVER}" -m black --check --diff "${BASEDIR}"
 # Run pylint to lint all python on 3.8 only
