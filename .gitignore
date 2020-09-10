@@ -116,6 +116,3 @@ cov.xml
 # Vim
 *.swp
 *.swo
-
-# nox
-.nox
