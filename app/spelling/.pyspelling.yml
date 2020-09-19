@@ -136,7 +136,10 @@ matrix:
   -
     - "${DIR}/**/*.js"
     - "!${DIR}/**/lib/**/*.js"
+    - "!${DIR}/**/libs/**/*.js"
     - "!${DIR}/**/vendor/**/*.js"
+    - "!${DIR}/**/vendored/**/*.js"
+    - "!${DIR}/**/vendors/**/*.js"
     - "!${DIR}/**/dist/**/*.js"
     - "!${DIR}/**/**/*.min.js"
     - "!${DIR}/**/**/*.combined.js"
