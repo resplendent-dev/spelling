@@ -141,6 +141,10 @@ matrix:
     - "!${DIR}/**/vendored/**/*.js"
     - "!${DIR}/**/vendors/**/*.js"
     - "!${DIR}/**/dist/**/*.js"
+    - "!${DIR}/**/doc/asset/**/*.js"
+    - "!${DIR}/**/doc/assets/**/*.js"
+    - "!${DIR}/**/docs/asset/**/*.js"
+    - "!${DIR}/**/docs/assets/**/*.js"
     - "!${DIR}/**/**/*.min.js"
     - "!${DIR}/**/**/*.combined.js"
   hunspell:
