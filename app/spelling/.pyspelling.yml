@@ -147,6 +147,7 @@ matrix:
     - "!${DIR}/**/docs/assets/**/*.js"
     - "!${DIR}/**/**/*.min.js"
     - "!${DIR}/**/**/*.combined.js"
+    - "!${DIR}/**/dist/**/*.js"
   hunspell:
     d: en_AU
   aspell:
