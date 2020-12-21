@@ -96,6 +96,8 @@ matrix:
     - "!${DIR}/**/vendored/**/*.py"
     - "!${DIR}/**/vendors/**/*.py"
     - "!${DIR}/**/dist/**/*.py"
+    - "!${DIR}/**/package/**/*.py"
+    - "!${DIR}/**/packages/**/*.py"
   hunspell:
     d: en_AU
   aspell:
@@ -155,6 +157,8 @@ matrix:
     - "!${DIR}/**/vendored/**/*.js"
     - "!${DIR}/**/vendors/**/*.js"
     - "!${DIR}/**/dist/**/*.js"
+    - "!${DIR}/**/package/**/*.js"
+    - "!${DIR}/**/packages/**/*.js"
     - "!${DIR}/**/doc/asset/**/*.js"
     - "!${DIR}/**/doc/assets/**/*.js"
     - "!${DIR}/**/docs/asset/**/*.js"
@@ -211,6 +215,8 @@ matrix:
     - "!${DIR}/**/vendored/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/vendors/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/dist/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/package/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/packages/**/*.{cpp,hpp,c,h}"
   hunspell:
     d: en_AU
   aspell:
