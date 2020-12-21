@@ -86,6 +86,16 @@ matrix:
   sources:
   -
     - "${DIR}/**/*.py"
+    - "!${DIR}/**/dependency/**/*.py"
+    - "!${DIR}/**/dependencies/**/*.py"
+    - "!${DIR}/**/lib/**/*.py"
+    - "!${DIR}/**/libs/**/*.py"
+    - "!${DIR}/**/include/**/*.py"
+    - "!${DIR}/**/includes/**/*.py"
+    - "!${DIR}/**/vendor/**/*.py"
+    - "!${DIR}/**/vendored/**/*.py"
+    - "!${DIR}/**/vendors/**/*.py"
+    - "!${DIR}/**/dist/**/*.py"
   hunspell:
     d: en_AU
   aspell:
@@ -135,8 +145,12 @@ matrix:
   sources:
   -
     - "${DIR}/**/*.js"
+    - "!${DIR}/**/dependency/**/*.js"
+    - "!${DIR}/**/dependencies/**/*.js"
     - "!${DIR}/**/lib/**/*.js"
     - "!${DIR}/**/libs/**/*.js"
+    - "!${DIR}/**/include/**/*.js"
+    - "!${DIR}/**/includes/**/*.js"
     - "!${DIR}/**/vendor/**/*.js"
     - "!${DIR}/**/vendored/**/*.js"
     - "!${DIR}/**/vendors/**/*.js"
@@ -147,7 +161,6 @@ matrix:
     - "!${DIR}/**/docs/assets/**/*.js"
     - "!${DIR}/**/**/*.min.js"
     - "!${DIR}/**/**/*.combined.js"
-    - "!${DIR}/**/dist/**/*.js"
   hunspell:
     d: en_AU
   aspell:
@@ -188,6 +201,16 @@ matrix:
   sources:
   -
     - "${DIR}/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/dependency/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/dependencies/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/lib/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/libs/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/include/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/includes/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/vendor/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/vendored/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/vendors/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/dist/**/*.{cpp,hpp,c,h}"
   hunspell:
     d: en_AU
   aspell:
