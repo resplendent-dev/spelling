@@ -215,6 +215,7 @@ matrix:
     - "!${DIR}/**/dependency/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/dep/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/deps/**/*.{cpp,hpp,c,h}"
+    - "!${DIR}/**/dependencies/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/lib/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/libs/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/include/**/*.{cpp,hpp,c,h}"
