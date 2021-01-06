@@ -2,4 +2,4 @@
 Version information for package
 """
 
-__version__ = "0.9.8.3"
+__version__ = "1.0"
