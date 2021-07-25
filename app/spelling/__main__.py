@@ -80,6 +80,7 @@ def wrap_open(path):
     """
     if path is None:
         yield None
+        return
     with io.open(path, "w", encoding="utf-8") as fobj:
         yield fobj
 

@@ -186,7 +186,7 @@ def test_main_data(args, filedata, expected_result, expected_exit_code, config):
             args.extend(["--config", configpath])
         os.chdir(path)
         # Exercise
-        result = runner.invoke(main, args)
+        result = runner.invoke(main, args, catch_exceptions=False)
     # Verify
     assert result.output.strip() == expected_result  # nosec # noqa=S101
     assert result.exit_code == expected_exit_code  # nosec # noqa=S101
@@ -218,7 +218,7 @@ def test_main_repo_data(path, record):
         with zipfile.ZipFile(str(path / "data.zip")) as zipobj:
             zipobj.extractall(extractpath)
             # Exercise
-            result = runner.invoke(main, args)
+            result = runner.invoke(main, args, catch_exceptions=False)
         # Verify
         if not record or expected_result_path.exists():
             result_sorted_lines = sorted(result.output.strip().splitlines())
