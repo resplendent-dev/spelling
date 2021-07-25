@@ -6,6 +6,7 @@ python -m spelling
 """
 from __future__ import absolute_import, division, print_function
 
+import contextlib
 import io
 import logging
 import os
@@ -72,6 +73,18 @@ def invoke(  # pylint: disable=too-many-arguments
     )
 
 
+@contextlib.contextmanager
+def wrap_open(path):
+    """
+    Handle path is None otherwise open in context manager
+    """
+    if path is None:
+        yield None
+        return
+    with io.open(path, "w", encoding="utf-8") as fobj:
+        yield fobj
+
+
 def run_invocation(  # pylint: disable=too-many-arguments
     display_context, display_summary, display_help, config, working_path, json_path
 ):
@@ -84,10 +97,7 @@ def run_invocation(  # pylint: disable=too-many-arguments
         success = True
         if working_path is None:
             working_path = pathlib.Path(os.getcwd()).resolve()
-        jsonfobj = None
-        if json_path:
-            jsonfobj = io.open(json_path, "w", encoding="utf-8")
-        try:
+        with wrap_open(json_path) as jsonfobj:
             msg_iter = check_iter(
                 display_context=display_context,
                 display_summary=display_summary,
@@ -99,9 +109,6 @@ def run_invocation(  # pylint: disable=too-many-arguments
             for msg in msg_iter:
                 print(msg)
                 success = False
-        finally:
-            if jsonfobj is not None:
-                jsonfobj.close()
         if not success:
             sys.exit(1)
         print("Spelling check passed :)")

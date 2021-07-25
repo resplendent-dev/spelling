@@ -3,8 +3,11 @@ version: '3.7'
 services:
   # Service image
   app:
-    image: spelling:latest
-    build: app
+    image: spelling:${PYVER}
+    build:
+      context: ./app
+      args:
+        - PYVER=${PYVER}
     environment:
       - HAS_JOSH_K_SEAL_OF_APPROVAL
       - CI

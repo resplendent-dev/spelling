@@ -47,5 +47,7 @@
     "extra_manifest": "include spelling/.pyspelling.yml\n",
     "package_data": "\n    package_data={\"spelling\": [\".pyspelling.yml\"]},",
     "test_requires": "",
-    "latest_python": "3.8"
+    "latest_python": "3.9",
+    "supported_python": "\"3.9\" \"3.8\" \"3.7\" \"3.6\"",
+    "extra_installs": ""
 }
