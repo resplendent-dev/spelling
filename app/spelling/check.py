@@ -103,7 +103,7 @@ def context_to_filename(name):
     raise Exception(f"Unable to get filepath for {name}")
 
 
-def process_results(
+def process_results(  # pylint: disable=too-many-arguments
     all_results,
     custom_wordlists,
     display_context,
