@@ -29,6 +29,7 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--display-help/--no-display-help", default=True)
 @click.option("--config", default=None)
+@click.option("--use-unanimous/--no-unanimous", default=True)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
 def main(  # pylint: disable=too-many-arguments
@@ -37,6 +38,7 @@ def main(  # pylint: disable=too-many-arguments
     display_summary,
     display_help,
     config,
+    use_unanimous,
     working_path,
     json_path,
 ):
@@ -50,6 +52,7 @@ def main(  # pylint: disable=too-many-arguments
             display_summary,
             display_help,
             config,
+            use_unanimous,
             working_path,
             json_path,
         )
@@ -60,16 +63,29 @@ def main(  # pylint: disable=too-many-arguments
 @click.option("--display-summary/--no-display-summary", default=True)
 @click.option("--display-help/--no-display-help", default=True)
 @click.option("--config", default=None)
+@click.option("--use-unanimous/--no-unanimous", default=True)
 @click.option("--working-path", default=None)
 @click.option("--json-path", default=None)
 def invoke(  # pylint: disable=too-many-arguments
-    display_context, display_summary, display_help, config, working_path, json_path
+    display_context,
+    display_summary,
+    display_help,
+    config,
+    use_unanimous,
+    working_path,
+    json_path,
 ):
     """
     Invoke the spell checker
     """
     run_invocation(
-        display_context, display_summary, display_help, config, working_path, json_path
+        display_context,
+        display_summary,
+        display_help,
+        config,
+        use_unanimous,
+        working_path,
+        json_path,
     )
 
 
@@ -86,7 +102,13 @@ def wrap_open(path):
 
 
 def run_invocation(  # pylint: disable=too-many-arguments
-    display_context, display_summary, display_help, config, working_path, json_path
+    display_context,
+    display_summary,
+    display_help,
+    config,
+    use_unanimous,
+    working_path,
+    json_path,
 ):
     """
     Call spell checker
@@ -103,6 +125,7 @@ def run_invocation(  # pylint: disable=too-many-arguments
                 display_summary=display_summary,
                 display_help=display_help,
                 config=config,
+                use_unanimous=use_unanimous,
                 workingpath=working_path,
                 jsonfobj=jsonfobj,
             )
