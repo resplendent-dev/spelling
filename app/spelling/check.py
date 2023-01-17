@@ -120,11 +120,13 @@ def process_results(  # pylint: disable=too-many-arguments
     for results in all_results:
         if results.error:
             fail = True
+            # pylint: disable=consider-using-f-string
             yield "ERROR: %s -- %s" % (results.context, results.error)
         elif results.words:
             fail = True
             misspelt.update(results.words)
             if display_context:
+                # pylint: disable=consider-using-f-string
                 yield "Misspelled words:\n<%s> %s" % (results.category, results.context)
                 yield "-" * 80
                 for word in results.words:
@@ -137,6 +139,7 @@ def process_results(  # pylint: disable=too-many-arguments
         if display_summary:
             yield "\n".join(sorted(misspelt))
         if display_help:
+            # pylint: disable=consider-using-f-string
             yield """
 If the spelling checker reports a spelling mistake which is actually a
 deliberate choice an exemption can be made in a few ways:
@@ -150,7 +153,7 @@ deliberate choice an exemption can be made in a few ways:
                 "\n* Adding to the global wordlist"
                 " https://github.com/resplendent-dev/unanimous"
                 if use_unanimous
-                else ""
+                else "",
             )
             if custom_wordlists:
                 custom_wordlists_lines = "\n".join(
