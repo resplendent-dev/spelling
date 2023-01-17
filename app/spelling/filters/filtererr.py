@@ -7,10 +7,9 @@ from pyspelling import filters
 class FailureFilter(filters.Filter):
     """Raise error during processing."""
 
-    @staticmethod
-    def get_default_config():
+    def get_default_config(self):
         """Get default configuration."""
-        return {}
+        return None
 
     def filter(self, source_file, encoding):  # noqa A001
         """Fail processing."""
