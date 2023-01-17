@@ -147,7 +147,8 @@ deliberate choice an exemption can be made in a few ways:
 * Adding to a custom wordlist wordlist.txt or spelling_wordlist.txt found in any
   sub-directory.%s
 """ % (
-                "\n* Adding to the global wordlist https://github.com/resplendent-dev/unanimous"
+                "\n* Adding to the global wordlist"
+                " https://github.com/resplendent-dev/unanimous"
                 if use_unanimous
                 else ""
             )
