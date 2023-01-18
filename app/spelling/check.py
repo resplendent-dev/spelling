@@ -13,7 +13,13 @@ from spelling.config import get_config_context_manager
 
 
 def check(  # pylint: disable=too-many-arguments
-    display_context, display_summary, display_help, config, fobj, jsonfobj=None
+    display_context,
+    display_summary,
+    display_help,
+    config,
+    use_unanimous,
+    fobj,
+    jsonfobj=None,
 ):
     """
     Execute the invocation
@@ -25,6 +31,7 @@ def check(  # pylint: disable=too-many-arguments
         display_summary,
         display_help,
         config,
+        use_unanimous,
         workingpath,
         jsonfobj=jsonfobj,
     )
@@ -37,17 +44,28 @@ def check(  # pylint: disable=too-many-arguments
 
 
 def check_iter(  # pylint: disable=too-many-arguments
-    display_context, display_summary, display_help, config, workingpath, jsonfobj=None
+    display_context,
+    display_summary,
+    display_help,
+    config,
+    use_unanimous,
+    workingpath,
+    jsonfobj=None,
 ):
     """
     Execute the invocation
     """
-    all_results, custom_wordlists = run_spell_check(config, workingpath)
+    all_results, custom_wordlists = run_spell_check(config, use_unanimous, workingpath)
     if jsonfobj is not None:
         all_results = list(all_results)
         json.dump(results_to_json(all_results), jsonfobj)
     yield from process_results(
-        all_results, custom_wordlists, display_context, display_summary, display_help
+        all_results,
+        custom_wordlists,
+        display_context,
+        display_summary,
+        display_help,
+        use_unanimous,
     )
 
 
@@ -85,8 +103,13 @@ def context_to_filename(name):
     raise Exception(f"Unable to get filepath for {name}")
 
 
-def process_results(
-    all_results, custom_wordlists, display_context, display_summary, display_help
+def process_results(  # pylint: disable=too-many-arguments
+    all_results,
+    custom_wordlists,
+    display_context,
+    display_summary,
+    display_help,
+    use_unanimous,
 ):
     """
     Work through the results yielding the words in a human readable
@@ -97,11 +120,13 @@ def process_results(
     for results in all_results:
         if results.error:
             fail = True
+            # pylint: disable=consider-using-f-string
             yield "ERROR: %s -- %s" % (results.context, results.error)
         elif results.words:
             fail = True
             misspelt.update(results.words)
             if display_context:
+                # pylint: disable=consider-using-f-string
                 yield "Misspelled words:\n<%s> %s" % (results.category, results.context)
                 yield "-" * 80
                 for word in results.words:
@@ -114,6 +139,7 @@ def process_results(
         if display_summary:
             yield "\n".join(sorted(misspelt))
         if display_help:
+            # pylint: disable=consider-using-f-string
             yield """
 If the spelling checker reports a spelling mistake which is actually a
 deliberate choice an exemption can be made in a few ways:
@@ -122,9 +148,13 @@ deliberate choice an exemption can be made in a few ways:
   ignored.
 * Escaping can be achieved through the use of back ticks ` around the word.
 * Adding to a custom wordlist wordlist.txt or spelling_wordlist.txt found in any
-  sub-directory.
-* Adding to the global wordlist https://github.com/resplendent-dev/unanimous
-"""
+  sub-directory.%s
+""" % (
+                "\n* Adding to the global wordlist"
+                " https://github.com/resplendent-dev/unanimous"
+                if use_unanimous
+                else "",
+            )
             if custom_wordlists:
                 custom_wordlists_lines = "\n".join(
                     [f"* {wordlist}" for wordlist in custom_wordlists]
@@ -135,11 +165,11 @@ Note: The following existing custom wordlists were found in this project:
 """
 
 
-def run_spell_check(config, workingpath):
+def run_spell_check(config, use_unanimous, workingpath):
     """
     Perform the spell check and keep a record of spelling mistakes.
     """
-    with get_config_context_manager(workingpath, config) as ctxt:
+    with get_config_context_manager(workingpath, use_unanimous, config) as ctxt:
         all_results = list(
             pyspelling.spellcheck(
                 str(ctxt.config),

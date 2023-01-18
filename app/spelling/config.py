@@ -21,14 +21,14 @@ class ConfigContext:
     nonwords dictionary and the custom exclusions.
     """
 
-    def __init__(self, tmppath, config, workingpath):
+    def __init__(self, tmppath, config, workingpath, use_unanimous):
         self.tmppath = tmppath
         self.origconfig = config
         self.workingpath = workingpath
         self.config = tmppath / ".pyspelling"
         self.wordlist = tmppath / "wordlist.txt"
         self.custom_wordlists = []
-        self.init()
+        self.init(use_unanimous)
 
     @staticmethod
     def load(config=None):
@@ -47,12 +47,15 @@ class ConfigContext:
         """
         yaml.safe_dump(target, yamldata)
 
-    def init(self):
+    def init(self, use_unanimous):
         """
         Prepare the updated config
         """
         data = self.load(self.origconfig)
-        nonwords = get_current_non_words()
+        if use_unanimous:
+            nonwords = get_current_non_words()
+        else:
+            nonword = []
         with io.open(str(self.wordlist), "w", encoding="utf-8") as fobj:
             for nonword in nonwords:
                 print(nonword, file=fobj)
@@ -95,12 +98,12 @@ class ConfigContext:
 
 
 @contextmanager
-def get_config_context_manager(workingpath, config=None):
+def get_config_context_manager(workingpath, use_unanimous, config=None):
     """
     Loads the default `.pyspelling` config or the one provided and then
     updates it with the nonwords dictionary and the custom exclusions in a
     context manager that cleans up on completion.
     """
     tmpdir = tempfile.mkdtemp()
-    yield ConfigContext(pathlib.Path(tmpdir), config, workingpath)
+    yield ConfigContext(pathlib.Path(tmpdir), config, workingpath, use_unanimous)
     shutil.rmtree(tmpdir)

@@ -33,4 +33,5 @@ fi
 done
 # Display installation
 "python${PYVER}" -m pip freeze
-"python${PYVER}" -m safety check
+# 51668 - waiting for sqlalchemy release
+"python${PYVER}" -m safety check -i 51668

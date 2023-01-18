@@ -15,7 +15,7 @@ def test_path_update():
     # Setup
     workingpath = pathlib.Path("/fake")
     # Exercise
-    with get_config_context_manager(workingpath) as ctxt:
+    with get_config_context_manager(workingpath, True) as ctxt:
         # Verify
         with io.open(ctxt.config, "r", encoding="utf-8") as fobj:
             data = fobj.read()
