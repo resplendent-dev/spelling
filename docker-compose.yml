@@ -64,6 +64,8 @@ services:
       - TRAVIS_UID
       - USER
       - USERNAME
+      - TWINE_USERNAME
+      - TWINE_PASSWORD
     volumes:
       - type: bind
         source: .
