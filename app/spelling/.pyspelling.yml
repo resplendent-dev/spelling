@@ -16,8 +16,8 @@ matrix:
     - "!${DIR}/**/contributors*"
     - "!${DIR}/**/translations/**/*"
     - "!${DIR}/**/htmlcov/**/*"
-    - "!${DIR}/**/build/**/*"
-    - "!${DIR}/**/_build/**/*"
+    - "!${DIR}/**/*build*/**/*"
+    - "!${DIR}/**/*modules*/**/*"
   hunspell:
     d: en_AU
   aspell:
@@ -59,8 +59,8 @@ matrix:
     - "!${DIR}/**/contributors*"
     - "!${DIR}/**/translations/**/*"
     - "!${DIR}/**/htmlcov/**/*"
-    - "!${DIR}/**/build/**/*"
-    - "!${DIR}/**/_build/**/*"
+    - "!${DIR}/**/*build*/**/*"
+    - "!${DIR}/**/*modules*/**/*"
   hunspell:
     d: en_AU
   aspell:
@@ -109,8 +109,8 @@ matrix:
     - "!${DIR}/**/packages/**/*.py"
     - "!${DIR}/**/translations/**/*"
     - "!${DIR}/**/htmlcov/**/*"
-    - "!${DIR}/**/build/**/*"
-    - "!${DIR}/**/_build/**/*"
+    - "!${DIR}/**/*build*/**/*"
+    - "!${DIR}/**/*modules*/**/*"
   hunspell:
     d: en_AU
   aspell:
@@ -183,8 +183,8 @@ matrix:
     - "!${DIR}/**/**/*.combined.js"
     - "!${DIR}/**/translations/**/*"
     - "!${DIR}/**/htmlcov/**/*"
-    - "!${DIR}/**/build/**/*"
-    - "!${DIR}/**/_build/**/*"
+    - "!${DIR}/**/*build*/**/*"
+    - "!${DIR}/**/*modules*/**/*"
   hunspell:
     d: en_AU
   aspell:
@@ -243,8 +243,8 @@ matrix:
     - "!${DIR}/**/packages/**/*.{cpp,hpp,c,h}"
     - "!${DIR}/**/translations/**/*"
     - "!${DIR}/**/htmlcov/**/*"
-    - "!${DIR}/**/build/**/*"
-    - "!${DIR}/**/_build/**/*"
+    - "!${DIR}/**/*build*/**/*"
+    - "!${DIR}/**/*modules*/**/*"
   hunspell:
     d: en_AU
   aspell:
