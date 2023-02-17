@@ -11,4 +11,4 @@ pytest-xdist
 safety
 twine
 wheel
-
+setuptools>65.5.1
