@@ -1,4 +1,4 @@
 spelling
-wcmatch<5.0
+wcmatch
 resplendent
 unanimous
