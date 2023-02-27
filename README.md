@@ -44,7 +44,7 @@ Note: if using Python 3.4 the latest version of lxml only supports python 3.5 an
 - pyspelling
 - wcmatch<5.0
 - resplendent
-- unanimous>=0.6.4
+- unanimous>=0.8.2
 - PyYAML
 
 
