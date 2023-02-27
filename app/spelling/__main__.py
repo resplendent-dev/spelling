@@ -19,7 +19,7 @@ from spelling.check import check_iter
 from spelling.dependencies import ensure_dependencies
 from spelling.version import __version__
 
-CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+CONTEXT_SETTINGS = {"help_option_names": ["-h", "--help"]}
 
 
 @click.group(context_settings=CONTEXT_SETTINGS, invoke_without_command=True)
@@ -135,10 +135,9 @@ def run_invocation(  # pylint: disable=too-many-arguments
         if not success:
             sys.exit(1)
         print("Spelling check passed :)")
-    except Exception:
+    except Exception:  # noqa # pylint: disable=broad-exception-caught
         logging.exception("Error during processing.")
         sys.exit(2)
-        raise
 
 
 if __name__ == "__main__":

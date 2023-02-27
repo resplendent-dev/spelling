@@ -13,11 +13,11 @@ class FailureFilter(filters.Filter):
 
     def filter(self, source_file, encoding):  # noqa A001
         """Fail processing."""
-        raise Exception("Failure during filtering")
+        raise ValueError("Failure during filtering")
 
     def sfilter(self, source):
         """Fail processing."""
-        raise Exception("Failure during filtering")
+        raise ValueError("Failure during filtering")
 
 
 def get_plugin():

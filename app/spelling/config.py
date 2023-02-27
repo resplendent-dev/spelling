@@ -55,7 +55,7 @@ class ConfigContext:
         if use_unanimous:
             nonwords = get_current_non_words()
         else:
-            nonword = []
+            nonwords = []
         with io.open(str(self.wordlist), "w", encoding="utf-8") as fobj:
             for nonword in nonwords:
                 print(nonword, file=fobj)
