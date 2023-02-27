@@ -12,6 +12,12 @@ import pyspelling
 from spelling.config import get_config_context_manager
 
 
+class SpellingContextError(ValueError):
+    """
+    Raised when a context path can not be located
+    """
+
+
 def check(  # pylint: disable=too-many-arguments
     display_context,
     display_summary,
@@ -100,7 +106,7 @@ def context_to_filename(name):
     testname = testname.strip()
     if os.path.isfile(testname):
         return testname
-    raise Exception(f"Unable to get filepath for {name}")
+    raise SpellingContextError(f"Unable to get filepath for {name}")
 
 
 def process_results(  # pylint: disable=too-many-arguments
