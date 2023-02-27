@@ -135,7 +135,7 @@ def run_invocation(  # pylint: disable=too-many-arguments
         if not success:
             sys.exit(1)
         print("Spelling check passed :)")
-    except Exception:
+    except Exception: # noqa # nosec
         logging.exception("Error during processing.")
         sys.exit(2)
 
