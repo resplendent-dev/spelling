@@ -1,8 +1,9 @@
 whichcraft
 distro
-dataset<1.2.0
+dataset
 pyspelling
 wcmatch
 resplendent
+sqlalchemy<2
 unanimous>=0.8.2
 PyYAML
