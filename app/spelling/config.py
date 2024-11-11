@@ -11,7 +11,6 @@ from contextlib import contextmanager
 
 import pkg_resources
 import yaml
-from unanimous.store import get_current_non_words
 from wcmatch import glob
 
 
@@ -53,6 +52,9 @@ class ConfigContext:
         """
         data = self.load(self.origconfig)
         if use_unanimous:
+            # pylint: disable=import-outside-toplevel
+            from unanimous.store import get_current_non_words
+
             nonwords = get_current_non_words()
         else:
             nonwords = []
