@@ -9,7 +9,7 @@ import shutil
 import tempfile
 from contextlib import contextmanager
 
-import pkg_resources
+import importlib.resources
 import yaml
 from wcmatch import glob
 
@@ -29,15 +29,18 @@ class ConfigContext:
         self.custom_wordlists = []
         self.init(use_unanimous)
 
-    @staticmethod
-    def load(config=None):
+    @classmethod
+    def load(cls, config=None):
         """
         Open the existing config
         """
         if config is None:
-            config = pkg_resources.resource_filename(__name__, ".pyspelling.yml")
-        with io.open(config, "r", encoding="utf-8") as fobj:
-            return yaml.safe_load(fobj)
+            ref = importlib.resources.files(__name__) / ".pyspelling.yml"
+            with importlib.resources.as_file(ref) as path:
+                return cls.load(config=path)
+        else:
+            with io.open(config, "r", encoding="utf-8") as fobj:
+                return yaml.safe_load(fobj)
 
     @staticmethod
     def save(target, yamldata):
